@@ -1,5 +1,29 @@
 {
   "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21",
     "node": "^17.7.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "b-flix",
+  "description": "This API lets your users access information about different B-movies, such as directors and actors. It also lets them sign up to create a list of their favorite B-movies.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patriciamcphee/bflix-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patriciamcphee/bflix-api/issues"
+  },
+  "homepage": "https://github.com/patriciamcphee/bflix-api#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0"
   }
 }
