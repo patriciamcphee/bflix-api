@@ -5,10 +5,163 @@
 		<meta charset = "UTF-8"/>
 		<meta name = "viewport" content="width = device-width, initial-scale = 1.0"/>
 		<title>My Movie Flix API</title>
-	</head>
-	<body>
-		<h1>bFlix API</h1>
-		<p>This API lets your users access information about different B-movies, such as directors and actors. It also lets them sign up to create a list of their favorite B-movies. 
-		</p>
+		<!-- Stylesheets-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+		<style>
+			body {
+				padding: 30px;
+			}
+		</style>
+		
+		</head>
+		<body>
+			<div class="grid-x">
+				<div class="cell large-auto align-center">
+
+					<h1>bFlix API</h1>
+					<p class="lead">This API lets your users access information about different B-movies, such as directors and actors. It also lets them sign up to create a list of their favorite B-movies. 
+					</p>
+			
+			
+			
+					<table>
+						<thead>
+						  <tr>
+							<th width="200">API</th>
+							<th>Endpoint</th>
+							<th>Query params</th>
+							<th>HTTP method</th>
+							<th>Request body data format</th>
+							<th>Response body data format</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr class="odd">
+							<td>Get a list of all movies</td>
+							<td>/movies</td>
+							<td>N/A</td>
+							<td>GET</td>
+							<td>None</td>
+							<td>A JSON object holding data about all the movies</td>
+						  </tr>
+						  <tr class="even">
+							<td>Get data about a single movie by title</td>
+							<td>/movies/[Title]</td>
+							<td>:title</td>
+							<td>GET</td>
+							<td>None</td>
+							<td><p>A JSON object holding data about a single movie containing the description, genre, director, image URL, and featured (true or false).</p>
+							<p><b>Example</b><br />
+			<pre>
+			{
+			  "title": "Hard Ticket to Hawaii",
+			  "description": " On its own, the snake could make this an awesome movie, 
+			  but it's just one reason why Hard Ticket to Hawaii is the most enjoyable 
+			  B movie of them all.",
+			  "year": 1987, 
+			  "director": "Andy Sidaris",
+			  "genre": "Action",
+			  "imgURL": ""
+			},</pre></p>
+						</td>
+							</tr>
+							<tr class="odd">
+							<td>Get data about a genre by title</td>
+							<td>/genres/[Name]</td>
+							<td>:name</td>
+							<td>GET</td>
+							<td>None</td>
+							<td><p>A JSON object holding data about the genre of a single movie.</p>
+							<p>Example</p>
+							<div>
+								<pre>"Dramas frequently follow characters you'd see as your friends, neighbors, 
+			and family dealing with the struggles of everyday life. They usually take place 
+			in a home, office setting, or with a group of characters forced to interact day to day."</pre>
+							</div>
+			</td>
+							</tr>
+							<tr class="even">
+							<td>Get data about a director by name</td>
+							<td>/directors/[Name]</td>
+							<td>:name</td>
+							<td>GET</td>
+							<td>None</td>
+							<td><p>A JSON object holding data about the director.</p>
+							<p>Example</p>
+							<p>{</p>
+							<p>"name": "Ed Wood",</p>
+							<p>"birthyear": 1924,</p>
+							<p>"deathyear": 1978,</p>
+							<p>"bio": "An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics."</p>
+							<p>}</p></td>
+							</tr>
+							<tr class="odd">
+							<td>User registration</td>
+							<td>/users</td>
+							<td>N/A</td>
+							<td>POST</td>
+							<td><p>A JSON object holding the data about the new user.</p>
+							<p>Example</p>
+							<p>{</p>
+							<p>"name": "Bam Bam McGee",</p>
+							<p>"favoriteMovies": ""</p>
+							<p>}</p></td>
+							<td><p>A JSON object holding the new user’s data with a system-generated ID.</p>
+							<p>Example</p>
+							<p>{</p>
+							<p>"name": "Bam Bam McGee",</p>
+							<p>"favoriteMovies": "",</p>
+							<p>"id": "0ef776e7-a269-4734-a7f8-2668fb8f9958"</p>
+							<p>}</p></td>
+							</tr>
+							<tr class="even">
+							<td>Update user info</td>
+							<td>/users/[ID]/[name]</td>
+							<td>:id, :name</td>
+							<td>PUT</td>
+							<td><p>A JSON object holding the updated information about the user.</p>
+							<p>Example</p>
+							<p>{</p>
+							<p>"name": "Chris",</p>
+							<p>}</p></td>
+							<td><p>A JSON object holding the updated data for the user.</p>
+							<p>Example</p>
+							<p>{</p>
+							<p>"id": 1,</p>
+							<p>"name": "Chris Paul McGuffin",</p>
+							<p>"favoriteMovies": ""</p>
+							<p>}</p></td>
+							</tr>
+							<tr class="odd">
+							<td>Unregister user (delete user)</td>
+							<td>/users/[ID]</td>
+							<td>:id</td>
+							<td>DELETE</td>
+							<td>None</td>
+							<td>A text confirmation message indicating the user has been removed from the movie app. For example, “User has been from the movie app.”</td>
+							</tr>
+							<tr class="even">
+							<td>Add a movie to a “favorites” list</td>
+							<td>/users/[ID]/[favoriteMovies]</td>
+							<td>:id, :title</td>
+							<td>PUT</td>
+							<td>None</td>
+							<td>A text confirmation message indicating the movie has been added. For example, “Miami Connection has been added to your favorite’s list.”</td>
+							</tr>
+							<tr class="odd">
+							<td>Remove a movie from the “favorites” list</td>
+							<td>/users/[ID]/[favoriteMovies]</td>
+							<td>:id, :title</td>
+							<td>DELETE</td>
+							<td>None</td>
+							<td>A text confirmation message indicating the movie has been removed. For example, “Miami Connection has been removed from your favorite's list.”</td>
+							</tr>
+					</tbody>
+					</table>
+				</div>
+			  </div>
+
+			
+
 	</body>
 </html>
