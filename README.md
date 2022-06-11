@@ -3,7 +3,7 @@ This API lets your users access information about different B-movies, such as di
 
 
 ## Get a list of all movies
-[description of what it does]
+
 
 <!-- **Base Url** : `http://bflixmovies.com` -->
 
@@ -48,7 +48,7 @@ A JSON object holding data about a single movie containing the description, genr
 ```
 
 ## Get data about a genre by title
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ A JSON object holding data about the genre of a single movie.
 ```
 
 ## Get data about a director by name
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -99,7 +99,7 @@ A JSON object holding data about the director.
 ```
 
 ## User registration
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -131,7 +131,7 @@ A JSON object holding the new user's data with a system-generated ID.
 ```
 
 ## Update user info
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -164,7 +164,7 @@ A JSON object holding the updated data for the user.
 ```
 
 ## Unregister user (delete user)
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -187,7 +187,7 @@ A text confirmation message indicating the user has been removed from the movie 
 
 
 ## Add a movie to a "favorites" list
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
@@ -209,7 +209,7 @@ Birdemic has been added to your favorite's list.
 ```
 
 ## Remove a movie from the "favorites" list
-[description of what it does]
+
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
