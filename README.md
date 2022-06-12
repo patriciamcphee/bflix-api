@@ -145,7 +145,7 @@ A JSON object holding the updated information about the user.
 
 ```json
 {
-    "name": "Chris P. McGuffin"
+    "name": "Chris P."
 }
 ```
 
@@ -156,7 +156,7 @@ A JSON object holding the updated data for the user.
 ```json
 {
     "id": 1,
-    "name": "Chris P. McGuffin",
+    "name": "Chris P.",
     "favoriteMovies": [
         "Plan 9 From Outer Space"
     ]
