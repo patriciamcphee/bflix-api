@@ -71,7 +71,7 @@ let movies = [
   },
   {
     title: 'Troll 2',
-    description: 'Joe Marshall and Frank Washington are two tenacious police detectives who seek at all costs to stop the Katana, a renegade Yakuza gang composed of violent and sadistic killers who want to lead the drug trade in Los Angeles.',
+    description: 'A vacationing family discovers that the entire town they\'re visiting is inhabited by goblins, disguised as humans, who plan to eat them.',
     year: 1990,
     director: 'Claudio Fragasso (as Drake Floyd)',
     genre: 'Fantasy',
@@ -157,7 +157,7 @@ let genres = [
   },
   {
     name: 'Crime',
-    description: ' We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released.'
+    description: 'We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released.'
   },
 ];
 
@@ -165,58 +165,63 @@ let genres = [
 // list of directors
 let directors = [
   {
-    name: 'Richard Park',
-    birthyear: 1943,
-    deathyear: 2006,
+    name: 'Woo-sang (Richard) Park',
+    birthyear: 1943-01-02,
+    deathyear: 2006-04-11,
     bio: 'He was a director and writer, known for American Chinatown (1995), Gang Justice (1991), and Miami Connection (1987). He died on April 11, 2006, in Seoul, Korea.'
   },
   {
     name: 'Y.K. Kim',
-    birthyear: 1956,
+    birthyear: 1956-11-29,
+    deathyear: NULL,
     bio: 'Runs a martial arts school in Orlando Florida.'
   },
   {
     name: 'Ed Wood',
-    birthyear: 1924,
-    deathyear: 1978,
+    birthyear: 1924-10-10,
+    deathyear: 1978-12-10,
     bio: 'An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics.'
   },
   {
     name: 'Chang Cheh',
-    birthyear: 1923,
-    deathyear: 2002,
+    birthyear: 1923-02-10,
+    deathyear: 2002-06-22,
     bio: 'He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti. '
   },
   {
     name: 'Claudio Fragasso',
-    birthyear: 1951,
+    birthyear: 1951-11-02,
+    deathyear: NULL,
     bio: 'His passion for cinema when he was given a camera in super 8.  He began shooting many films, involving his friends. He\'s a versatile director who has tried all genres, always experimenting with new things. '
   },
   {
     name: 'Scott Glosserman',
-    birthyear: 1976,
+    birthyear: 1976-11-21,
+    deathyear: NULL,
     bio: 'A writer/director/producer, and CEO of Gathr.'
   },
   {
     name: 'Amir Shervan',
-    birthyear: 1929,
-    deathyear: 2006,
-    bio: 'studied theater in Pasadena California in the 1940s and returned to Iran to begin his career in film. During the 1979 Iranian Revolution, all movies were subject to review by the Iranian government and many of them were banned due to their content while others were "purified" or altered to suit the growing anti-western and pro-Islamic sentiment. This caused a pause in his film career starting in 1980 and ending with his move to the United States where he settled in California.'
+    birthyear: 1929-05-24,
+    deathyear: 2006-11-01,
+    bio: 'Studied theater in Pasadena California in the 1940s and returned to Iran to begin his career in film. During the 1979 Iranian Revolution, all movies were subject to review by the Iranian government and many of them were banned due to their content while others were "purified" or altered to suit the growing anti-western and pro-Islamic sentiment. This caused a pause in his film career starting in 1980 and ending with his move to the United States where he settled in California.'
   },
   {
     name: 'James Nguyen',
-    birthyear: 1966,
+    birthyear: 1966-09-01,
+    deathyear: NULL,
     bio: 'Founder of Moviehead.com, an online movie theater. In 2001, he produced and directed Julie and Jack - a romantic thriller about love and spirituality. In 2004, he completed a second film: Replica - a romantic thriller.'
   },
   {
     name: 'Tommy Wiseau',
-    birthyear: 1955,
+    birthyear: 1955-10-03,
+    deathyear: NULL,
     bio: 'An American actor, director, screenwriter & producer. He trained to be an actor at American Conservatory Theater, Vince Chase Workshop, Jean Shelton Acting Lab, Laney College, and Stella Adler Academy of Acting.'
   },
   {
     name: 'Andy Sidaris',
-    birthyear: 1931,
-    deathyear: 2007,
+    birthyear: 1931-02-30,
+    deathyear: 2007-03-07,
     bio: 'Born in Chicago, Illinois, he was an actor and a pioneer director of TV sports shows. He directed NFL Monday Night Football (1970) and earned an Emmy for his work directing the televised 1968 Summer Olympics in 1969. He died from throat cancer on March 7, 2007, in Beverly Hills, CA.'
   },
 ];
