@@ -11,7 +11,8 @@
     "node": "^17.7.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zero-md": "^2.3.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

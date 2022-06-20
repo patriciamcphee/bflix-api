@@ -1918,3 +1918,8 @@
   "integrity" "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
   "resolved" "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   "version" "1.0.2"
+
+"zero-md@^2.3.5":
+  "integrity" "sha512-kthUPnUJTyvikQqLR+6lsVO7RNV2XbnbY5DtWVLeatXi3GW5ZZJhwjpXBDX/1DxH+FImcIe5DOnhF4KUDqxEsA=="
+  "resolved" "https://registry.npmjs.org/zero-md/-/zero-md-2.3.5.tgz"
+  "version" "2.3.5"
