@@ -95,7 +95,7 @@ app.post('/users', (req, res) => {
     users.push(newUser);
     res.status(201).json(newUser)
   }else{
-    res.status(400).send('The name is missing for the new user. Try again by providing a name.')
+    res.status(400).send('The name is missing for the new user. Provide the name and try again.')
   }
 });
 
@@ -109,7 +109,7 @@ app.put('/users/:id', (req, res) => {
     user.name = updatedUser.name;
     res.status(200).json(user);
   }else{
-    res.status(400).send('A user by the name couldn\'t be found.')
+    res.status(400).send('A user by this name couldn\'t be found.')
   }
 });
 
@@ -122,7 +122,7 @@ app.delete('/users/:deleteID/', (req, res) => {
     users = users.filter( user => user.id != deleteID);
     res.status(200).send(`${deleteID} has been removed from the movie app.`);
   }else{
-    res.status(400).send('A user by the name couldn\'t be found.')
+    res.status(400).send('A user by this name couldn\'t be found.')
   }
 }) 
 
@@ -135,7 +135,7 @@ app.put('/users/:id/:newMovie', (req, res) => {
     user.favoriteMovies.push(newMovie);
     res.status(200).send(`${newMovie} has been added to your favorite\'s list.`);
   }else{
-    res.status(400).send('A user by the name couldn\'t be found.')
+    res.status(400).send('A user by this name couldn\'t be found.')
   }
 });
 
@@ -148,7 +148,7 @@ app.delete('/users/:id/:deleteMovie', (req, res) => {
     user.favoriteMovies = user.favoriteMovies.filter( title => title !== deleteMovie );
     res.status(200).send(`${deleteMovie} has been removed from your favorite\'s list.`);
   }else{
-    res.status(400).send('A user by the name couldn\'t be found.')
+    res.status(400).send('A user by this name couldn\'t be found.')
   }
 });
 
