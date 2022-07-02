@@ -2,11 +2,10 @@
   "dependencies": {
     "antd": "^4.20.6",
     "body-parser": "^1.20.0",
-    "commonmark": "^0.30.0",
-    "ember-cli-foundation-sass": "^1.2.0",
     "express": "^4.18.1",
     "foundation-sites": "^6.7.4",
-    "mongoose": "^6.4.1",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.2",
     "morgan": "^1.10.0",
     "node": "^17.7.2",
     "react": "^18.1.0",

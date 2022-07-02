@@ -52,7 +52,7 @@ A JSON object holding data about a single movie containing the description, genr
 
 | Endpoint | Parameters | Method | Response type |
 | --- | --- | --- | --- |
-|  `/genres/[Name]` | `:name`  | GET  | Body |
+|  `movies/genre/[Name]` | `:name`  | GET  | Body |
 
 
 
@@ -62,13 +62,31 @@ None
 
 ### Response
     
-A JSON object holding data about the genre of a single movie.
+A JSON object holding data about the genre of the movies in the database.
+
+>Genres are not in a separate database. Therefore, the movie information and director information are included in the response.
 
 
 ```json
 {
-    "We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released."
-}
+    "Genre": {
+        "Name": "Kung Fu",
+        "Description": "A subgenre of martial arts films and Hong Kong action cinema set in the contemporary period and featuring realistic martial arts."
+    },
+    "Director": {
+        "Name": "Chang Cheh",
+        "Bio": "He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti.",
+        "Birth": "1923-02-10",
+        "Death": "2002-06-22"
+    },
+    "_id": "62af64b890779f9b519bda58",
+    "Title": "Five Element Ninjas",
+    "Description": "A Chinese martial arts school is infiltrated and destroyed by ninjas. Tian Hao survives the massacre and seeks to uncover the trickery of ninjutsu in order to beat the Five Element Ninjas and avenge his family.",
+    "ImagePath": "https://m.media-amazon.com/images/M/MV5BODc5NzdkMzktZWM5OS00MzJiLTk2NTAtNzdiMmM1ODFlOTY5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UY209_CR1,0,140,209_AL_.jpg",
+    "Featured": true,
+    "Rated": "R",
+    "Release": "1982"
+    }
 ```
 
 ## Get data about a director by name
@@ -87,14 +105,29 @@ None
 ### Response
 
     
-A JSON object holding data about the director.
+A JSON object holding data about a director.
+
+>Genres are not in a separate database. Therefore, the movie information and director information are included in the response.
 
 ```json
 {
-    "name": "Ed Wood",
-    "birthyear": 1924,
-    "deathyear": 1978,
-    "bio": "An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics."
+    "Genre": {
+        "Name": "Action",
+        "Description": "A clear division between good and evil. Lots of fighting and set pieces. Their pacing and structure are built around scenes like car chases and their climaxes often have the biggest set-pieces."
+    },
+    "Director": {
+        "Name": "Andy Sidaris",
+        "Bio": "Born in Chicago, Illinois, he was an actor and a pioneer director of TV sports shows. He directed NFL Monday Night Football (1970) and earned an Emmy for his work directing the televised 1968 Summer Olympics in 1969. He died from throat cancer on March 7, 2007, in Beverly Hills, CA.",
+        "Birth": "1931-02-30",
+        "Death": "2007-03-07"
+    },
+    "_id": "62af62d990779f9b519bda54",
+    "Title": "Hard Ticket to Hawaii",
+    "Description": "In Hawaii, an undercover DEA agent and her civilian friend stumble upon a drug-trafficking operation, and have to enlist the help of all their colleagues/friends to go after the vicious drug kingpin.",
+    "ImagePath": "https://m.media-amazon.com/images/M/MV5BNDgwNjhmZmQtOTBlNi00MWQ4LTk4OWMtMDkxNmQ4NjhlNzk5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UX140_CR0,0,140,209_AL_.jpg",
+    "Featured": true,
+    "Release": "1987",
+    "Rated": "R"
 }
 ```
 
@@ -113,10 +146,13 @@ A JSON object holding the data about the new user.
 
 ```json
 {
-    "name": "Bam Bam McGee",
-    "favoriteMovies": ""
+    "Username": "bambammcgee",
+    "Password": "NUng``GQE@c]",
+    "Email": "bbmcgee@email.com"
 }
 ```
+
+
 
 ### Response
 
@@ -124,9 +160,11 @@ A JSON object holding the new user's data with a system-generated ID.
 
 ```json
 {
-    "name": "Bam Bam McGee",
-    "favoriteMovies": "",
-    "id": "a33e6f23-9b62-450c-b643-852c2ca79b11"
+    "Username": "bambammcgee",
+    "Password": "NUng``GQE@c]",
+    "Email": "bbmcgee@email.com",
+    "FavoriteMovies": [],
+    "_id": "62c0764a5efee8cbbeadeee3",
 }
 ```
 
