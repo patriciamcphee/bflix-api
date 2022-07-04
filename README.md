@@ -202,7 +202,7 @@ bambammcgee has been removed from the movie app.
 
 | Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/users/:Username/movies/:MovieID` | PUT  | None | Text |
+|  `/users/:Username/movies/:MovieID` | POST  | None | Text |
 
 
 
