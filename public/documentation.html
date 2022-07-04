@@ -7,157 +7,283 @@
 		<title>My Movie Flix API</title>
 		<!-- Stylesheets-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-		<style>
-			body {
-				padding: 30px;
-			}
-		</style>
-		
+		<link
+		rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	  />
+	  
+		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 		</head>
 		<body>
+			<div id="container" style="padding: 50px" />
+			<script>var mountNode = document.getElementById('container');</script>
+
+
 			<div class="grid-x">
 				<div class="cell large-auto align-center">
+				<zero-md>
+					<script type="text/markdown">
+# My B-Movie Flix API
+This API lets users access information about different B-movies, such as directors and actors. It also lets them sign up so they can create a list of their favorite B-movies.
 
-					<h1>bFlix API</h1>
-					<p class="lead">This API lets your users access information about different B-movies, such as directors and actors. It also lets them sign up to create a list of their favorite B-movies. 
-					</p>
-			
-			
-			
-					<table>
-						<thead>
-						  <tr>
-							<th width="200">API</th>
-							<th>Endpoint</th>
-							<th>Query params</th>
-							<th>HTTP method</th>
-							<th>Request body data format</th>
-							<th>Response body data format</th>
-						  </tr>
-						</thead>
-						<tbody>
-						  <tr class="odd">
-							<td>Get a list of all movies</td>
-							<td>/movies</td>
-							<td>N/A</td>
-							<td>GET</td>
-							<td>None</td>
-							<td>A JSON object holding data about all the movies</td>
-						  </tr>
-						  <tr class="even">
-							<td>Get data about a single movie by title</td>
-							<td>/movies/[Title]</td>
-							<td>:title</td>
-							<td>GET</td>
-							<td>None</td>
-							<td><p>A JSON object holding data about a single movie containing the description, genre, director, image URL, and featured (true or false).</p>
-							<p><b>Example</b><br />
-			<pre>
-			{
-			  "title": "Hard Ticket to Hawaii",
-			  "description": " On its own, the snake could make this an awesome movie, 
-			  but it's just one reason why Hard Ticket to Hawaii is the most enjoyable 
-			  B movie of them all.",
-			  "year": 1987, 
-			  "director": "Andy Sidaris",
-			  "genre": "Action",
-			  "imgURL": ""
-			},</pre></p>
-						</td>
-							</tr>
-							<tr class="odd">
-							<td>Get data about a genre by title</td>
-							<td>/genres/[Name]</td>
-							<td>:name</td>
-							<td>GET</td>
-							<td>None</td>
-							<td><p>A JSON object holding data about the genre of a single movie.</p>
-							<p>Example</p>
-							<div>
-								<pre>"Dramas frequently follow characters you'd see as your friends, neighbors, 
-			and family dealing with the struggles of everyday life. They usually take place 
-			in a home, office setting, or with a group of characters forced to interact day to day."</pre>
-							</div>
-			</td>
-							</tr>
-							<tr class="even">
-							<td>Get data about a director by name</td>
-							<td>/directors/[Name]</td>
-							<td>:name</td>
-							<td>GET</td>
-							<td>None</td>
-							<td><p>A JSON object holding data about the director.</p>
-							<p>Example</p>
-							<p>{</p>
-							<p>"name": "Ed Wood",</p>
-							<p>"birthyear": 1924,</p>
-							<p>"deathyear": 1978,</p>
-							<p>"bio": "An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics."</p>
-							<p>}</p></td>
-							</tr>
-							<tr class="odd">
-							<td>User registration</td>
-							<td>/users</td>
-							<td>N/A</td>
-							<td>POST</td>
-							<td><p>A JSON object holding the data about the new user.</p>
-							<p>Example</p>
-							<p>{</p>
-							<p>"name": "Bam Bam McGee",</p>
-							<p>"favoriteMovies": ""</p>
-							<p>}</p></td>
-							<td><p>A JSON object holding the new user’s data with a system-generated ID.</p>
-							<p>Example</p>
-							<p>{</p>
-							<p>"name": "Bam Bam McGee",</p>
-							<p>"favoriteMovies": "",</p>
-							<p>"id": "0ef776e7-a269-4734-a7f8-2668fb8f9958"</p>
-							<p>}</p></td>
-							</tr>
-							<tr class="even">
-							<td>Update user info</td>
-							<td>/users/[ID]/[name]</td>
-							<td>:id, :name</td>
-							<td>PUT</td>
-							<td><p>A JSON object holding the updated information about the user.</p>
-							<p>Example</p>
-							<p>{</p>
-							<p>"name": "Chris",</p>
-							<p>}</p></td>
-							<td><p>A JSON object holding the updated data for the user.</p>
-							<p>Example</p>
-							<p>{</p>
-							<p>"id": 1,</p>
-							<p>"name": "Chris Paul McGuffin",</p>
-							<p>"favoriteMovies": ""</p>
-							<p>}</p></td>
-							</tr>
-							<tr class="odd">
-							<td>Unregister user (delete user)</td>
-							<td>/users/[ID]</td>
-							<td>:id</td>
-							<td>DELETE</td>
-							<td>None</td>
-							<td>A text confirmation message indicating the user has been removed from the movie app. For example, “User has been from the movie app.”</td>
-							</tr>
-							<tr class="even">
-							<td>Add a movie to a “favorites” list</td>
-							<td>/users/[ID]/[favoriteMovies]</td>
-							<td>:id, :title</td>
-							<td>PUT</td>
-							<td>None</td>
-							<td>A text confirmation message indicating the movie has been added. For example, “Miami Connection has been added to your favorite’s list.”</td>
-							</tr>
-							<tr class="odd">
-							<td>Remove a movie from the “favorites” list</td>
-							<td>/users/[ID]/[favoriteMovies]</td>
-							<td>:id, :title</td>
-							<td>DELETE</td>
-							<td>None</td>
-							<td>A text confirmation message indicating the movie has been removed. For example, “Miami Connection has been removed from your favorite's list.”</td>
-							</tr>
-					</tbody>
-					</table>
+
+## Get a list of all movies
+
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/movies` |  GET | None | Body |
+
+### Request example
+
+None
+
+### Response example
+A JSON object holding data about all the movies.
+
+
+
+## Get data about a single movie by title
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/movies/:Title` | GET | None | Body |
+
+
+
+### Request example
+
+None
+
+### Response
+
+A JSON object holding data about a single movie containing the description, genre, directory, image URL, and featured (true or false).
+
+```json
+{
+	"_id": "62af62d990779f9b519bda54",
+	"Title": "Hard Ticket to Hawaii",
+	"Description": "In Hawaii, an undercover DEA agent and her civilian friend stumble upon a drug-trafficking operation, and have to enlist the help of all their colleagues/friends to go after the vicious drug kingpin.",
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BNDgwNjhmZmQtOTBlNi00MWQ4LTk4OWMtMDkxNmQ4NjhlNzk5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": true,
+	"Release": "1987",
+	"Rated": "R"
+}
+```
+
+## Get data about a genre by title
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `movies/genre/:Name` | GET  | None | Body |
+
+
+
+### Request
+
+None
+
+### Response
+	
+A JSON object that holds data about the genre of the movies in the database.
+
+
+```json
+{
+	"Name": "Action",
+	"Description": "A clear division between good and evil. Lots of fighting and set pieces. Their pacing and structure are built around scenes like car chases and their climaxes often have the biggest set-pieces."
+}
+```
+
+## Get data about a director by name
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/movies/directors/:Name` | GET | None | Body |
+
+
+
+### Request
+
+None
+
+### Response
+
+	
+A JSON object holding data about a director.
+
+```json
+{
+	"Name": "Chang Cheh",
+	"Bio": "He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti.",
+	"Birth": "1923-02-10",
+	"Death": "2002-06-22"
+}
+```
+
+## User registration
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/user` | POST  | Body | Body |
+
+
+
+### Request
+
+A JSON object holding the data about the new user.
+
+```json
+{
+	"Username": "bambammcgee",
+	"Password": "NUng``GQE@c]",
+	"Email": "bbmcgee@email.com"
+}
+```
+
+
+
+### Response
+
+A JSON object holding the new user's data with a system-generated ID.
+
+```json
+{
+	"Username": "bambammcgee",
+	"Password": "NUng``GQE@c]",
+	"Email": "bbmcgee@email.com",
+	"FavoriteMovies": [],
+	"_id": "62c0764a5efee8cbbeadeee3",
+	"__v": 0
+}
+```
+
+## Update user info
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/users/:Username` | PUT | Body | Body |
+
+
+
+### Request
+
+A JSON object that holds the updated information about the user.
+
+```json
+{
+	"Username": "patriciamcphee",
+	"Password": "jFB6DGX7nhXfpxon"
+}
+```
+
+### Response
+
+A JSON object that holds the updated data for the user.
+
+```json
+{
+	"_id": "62af73cd90779f9b519bda60",
+	"Username": "patriciamcphee",
+	"Password": "jFB6DGX7nhXfpxon",
+		"Email": "somethingrandom@email.com",
+		"FavoriteMovies": [
+			"62c319b0b16106ca5a07b823"
+		],
+		"__v": 0
+}
+```
+
+## Unregister user (delete user)
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/users/:Username` | DELETE  | None | Text |
+
+
+
+### Request
+
+None
+
+### Response
+
+A text confirmation message indicating the user has been removed from the movie app. 
+
+```
+bambammcgee has been removed from the movie app.
+```
+
+
+
+## Add a movie to a user's "favorites" list
+
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/users/:Username/movies/:MovieID` | PUT  | None | Text |
+
+
+
+### Request
+
+None
+
+
+### Response
+A JSON object that holds the updated data for the user.
+
+```json
+{
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
+	"FavoriteMovies": [
+		"62c31dfbb16106ca5a07b826"
+	],
+	"__v": 0
+}
+```
+
+## Remove a movie from the user's "favorites" list
+
+| Endpoint | HTTP Method | Request | Response |
+| --- | --- | --- | --- |
+|  `/users/:Username/movies/:MovieID` | DELETE  | None | Text |
+
+
+
+### Request
+
+None
+
+### Response
+A JSON object that holds the updated data for the user.
+	
+
+```json
+{
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
+	"FavoriteMovies": [],
+	"__v": 0
+}
+```
+						
+
+						  </script>
+
+					</zero-md>
+
 				</div>
 			  </div>
 
