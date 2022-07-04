@@ -7,15 +7,15 @@
 		<title>My Movie Flix API</title>
 		<!-- Stylesheets-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-		<style>
-			body {
-				padding: 30px;
-			}
-		</style>
+		<link
+		rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	  />
+	  
 		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 		</head>
 		<body>
-			<div id="container" style="padding: 24px" />
+			<div id="container" style="padding: 50px" />
 			<script>var mountNode = document.getElementById('container');</script>
 
 
@@ -24,35 +24,36 @@
 				<zero-md>
 					<script type="text/markdown">
 # My B-Movie Flix API
-This API lets your users access information about different B-movies, such as directors and actors. It also lets them sign up so they can create a list of their favorite B-movies.
+This API lets users access information about different B-movies, such as directors and actors. It also lets them sign up so they can create a list of their favorite B-movies.
 
 
 ## Get a list of all movies
 
 
-<!-- **Base Url** : `http://bflixmovies.com` -->
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/movies` | none  |  GET | Body |
+|  `/movies` |  GET | None | Body |
 
-### Request
+### Request example
 
 None
 
-### Response
+### Response example
 A JSON object holding data about all the movies.
 
+
+
 ## Get data about a single movie by title
-[description of what it does]
 
-| Endpoint | Parameters | Method | Response type |
+
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/movies/[Title]` | `:title`  |  GET | Body |
+|  `/movies/:Title` | GET | None | Body |
 
 
 
-### Request
+### Request example
 
 None
 
@@ -62,22 +63,22 @@ A JSON object holding data about a single movie containing the description, genr
 
 ```json
 {
-    "title": "Hard Ticket to Hawaii",
-    "description": "In Hawaii, an undercover DEA agent and her civilian friend stumble upon a drug trafficking operation, and have to enlist the help of all their colleagues/friends to go after the vicious drug kingpin.",
-    "year": 1987,
-    "director": "Andy Sidaris",
-    "genre": "Action",
-    "imgURL": "",
-    "featured": ""
+	"_id": "62af62d990779f9b519bda54",
+	"Title": "Hard Ticket to Hawaii",
+	"Description": "In Hawaii, an undercover DEA agent and her civilian friend stumble upon a drug-trafficking operation, and have to enlist the help of all their colleagues/friends to go after the vicious drug kingpin.",
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BNDgwNjhmZmQtOTBlNi00MWQ4LTk4OWMtMDkxNmQ4NjhlNzk5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": true,
+	"Release": "1987",
+	"Rated": "R"
 }
 ```
 
 ## Get data about a genre by title
 
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/genres/[Name]` | `:name`  | GET  | Body |
+|  `movies/genre/:Name` | GET  | None | Body |
 
 
 
@@ -86,22 +87,22 @@ A JSON object holding data about a single movie containing the description, genr
 None
 
 ### Response
-    
-A JSON object holding data about the genre of a single movie.
+	
+A JSON object that holds data about the genre of the movies in the database.
 
 
 ```json
 {
-    "We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released."
+	"Name": "Action",
+	"Description": "A clear division between good and evil. Lots of fighting and set pieces. Their pacing and structure are built around scenes like car chases and their climaxes often have the biggest set-pieces."
 }
 ```
 
 ## Get data about a director by name
 
-
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/directors/[Name]` | `:name`  | GET  | Body |
+|  `/movies/directors/:Name` | GET | None | Body |
 
 
 
@@ -111,24 +112,24 @@ None
 
 ### Response
 
-    
-A JSON object holding data about the director.
+	
+A JSON object holding data about a director.
 
 ```json
 {
-    "name": "Ed Wood",
-    "birthyear": 1924,
-    "deathyear": 1978,
-    "bio": "An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics."
+	"Name": "Chang Cheh",
+	"Bio": "He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti.",
+	"Birth": "1923-02-10",
+	"Death": "2002-06-22"
 }
 ```
 
 ## User registration
 
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/user` | N/A  | POST  | Body |
+|  `/user` | POST  | Body | Body |
 
 
 
@@ -138,10 +139,13 @@ A JSON object holding the data about the new user.
 
 ```json
 {
-    "name": "Bam Bam McGee",
-    "favoriteMovies": ""
+	"Username": "bambammcgee",
+	"Password": "NUng``GQE@c]",
+	"Email": "bbmcgee@email.com"
 }
 ```
+
+
 
 ### Response
 
@@ -149,51 +153,58 @@ A JSON object holding the new user's data with a system-generated ID.
 
 ```json
 {
-    "name": "Bam Bam McGee",
-    "favoriteMovies": "",
-    "id": "a33e6f23-9b62-450c-b643-852c2ca79b11"
+	"Username": "bambammcgee",
+	"Password": "NUng``GQE@c]",
+	"Email": "bbmcgee@email.com",
+	"FavoriteMovies": [],
+	"_id": "62c0764a5efee8cbbeadeee3",
+	"__v": 0
 }
 ```
 
 ## Update user info
 
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/users/[ID]/[Name]` | `:id`, `:name`  | PUT  | Body |
+|  `/users/:Username` | PUT | Body | Body |
 
 
 
 ### Request
 
-A JSON object holding the updated information about the user.
+A JSON object that holds the updated information about the user.
 
 ```json
 {
-    "name": "Chris P."
+	"Username": "patriciamcphee",
+	"Password": "jFB6DGX7nhXfpxon"
 }
 ```
 
 ### Response
 
-A JSON object holding the updated data for the user.
+A JSON object that holds the updated data for the user.
 
 ```json
 {
-    "id": 1,
-    "name": "Chris P.",
-    "favoriteMovies": [
-        "Plan 9 From Outer Space"
-    ]
+	"_id": "62af73cd90779f9b519bda60",
+	"Username": "patriciamcphee",
+	"Password": "jFB6DGX7nhXfpxon",
+		"Email": "somethingrandom@email.com",
+		"FavoriteMovies": [
+			"62c319b0b16106ca5a07b823"
+		],
+		"__v": 0
 }
 ```
 
 ## Unregister user (delete user)
 
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/users/[ID]` | `:id`  | DELETE  | Text |
+|  `/users/:Username` | DELETE  | None | Text |
 
 
 
@@ -206,17 +217,17 @@ None
 A text confirmation message indicating the user has been removed from the movie app. 
 
 ```
-1 has been removed from the movie app.
+bambammcgee has been removed from the movie app.
 ```
 
 
 
-## Add a movie to a "favorites" list
+## Add a movie to a user's "favorites" list
 
 
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/users/[ID]/[favoriteMovies]` | `:id`, `:title`  | PUT  | Text |
+|  `/users/:Username/movies/:MovieID` | PUT  | None | Text |
 
 
 
@@ -226,19 +237,26 @@ None
 
 
 ### Response
+A JSON object that holds the updated data for the user.
 
-A text confirmation message indicating the movie has been added. 
-
+```json
+{
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
+	"FavoriteMovies": [
+		"62c31dfbb16106ca5a07b826"
+	],
+	"__v": 0
+}
 ```
-Birdemic has been added to your favorite's list.
-```
 
-## Remove a movie from the "favorites" list
+## Remove a movie from the user's "favorites" list
 
-
-| Endpoint | Parameters | Method | Response type |
+| Endpoint | HTTP Method | Request | Response |
 | --- | --- | --- | --- |
-|  `/users/[ID]/[favoriteMovies]` | `:id`, `:title`  | DELETE  | Text |
+|  `/users/:Username/movies/:MovieID` | DELETE  | None | Text |
 
 
 
@@ -247,12 +265,20 @@ Birdemic has been added to your favorite's list.
 None
 
 ### Response
+A JSON object that holds the updated data for the user.
+	
 
-A text confirmation message indicating the movie has been removed. 
-
+```json
+{
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
+	"FavoriteMovies": [],
+	"__v": 0
+}
 ```
-Miami Connection has been removed from your favorite's list.
-```
+						
 
 						  </script>
 

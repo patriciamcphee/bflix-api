@@ -1,29 +1,25 @@
 const express = require('express'),
-  bodyParser = require('body-parser'),
-  uuid = require('uuid');
+    morgan = require('morgan'),
+    bodyParser = require('body-parser'),
+    uuid = require('uuid'),
+    fs = require('fs'),
+    path = require('path');
+const { rest } = require('lodash');
+    mongoose = require('mongoose');
+    Models = require('./models.js');
 
-const morgan = require('morgan');
-const app = express();
-const mongoose = require('mongoose');
-const Models = require('./models.js');
+var app = express();
+
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
-
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 // Connect to db using mongoose to perform CRUD
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
 
-
-// Log data to terminal
-//app.use(morgan('common'));
-
-// Sends static files
-//app.use(express.static('public'));
 
 // Default message on Home page
 app.get('/', (req, res) => {
@@ -48,7 +44,7 @@ app.get('/secreturl', (req, res) => {
 app.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
-      res.status(200).json(movies);
+      res.status(201).json(movies);
     })
     .catch((err) => {
       console.error(err);
@@ -58,10 +54,10 @@ app.get('/movies', (req, res) => {
 
 
 // GET the data about a single movie, by title
-app.get('/movies/:title', (req, res) => {
-  Movies.findOne({ title: req.params.title })
-    .then((movie) => {
-      res.status(200).json(movie);
+app.get('/movies/:Title', (req, res) => {
+  Movies.findOne({ Title: req.params.Title })
+    .then((title) => {
+      res.json(title);
     })
     .catch((err) => {
       console.error(err);
@@ -70,27 +66,27 @@ app.get('/movies/:title', (req, res) => {
 });
 
 // GET the data about a director, by name
-app.get('/movies/directors/:Name', (req, res) => {
-  Movies.findOne({ 'Director.Name' : req.params.Name })
-    .then((movie) => {
-      if (movie) {
-        res.status(200).json(movie);
-      } else {
-        res.status(400).send('DirectorThe director you\'re looking for couldn\'t be found. Check the name or spelling and try again.')
-      }
+app.get('/movies/director/:Name', (req, res) => {
+  Movies.findOne({ 'Director.Name': req.params.Name })
+    .then((director) => {
+      res.json(director);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
 // GET the data about a genre, by name/type
 app.get('/movies/genre/:Name', (req, res) => {
   Movies.find({ 'Genre.Name' : req.params.Name })
-    .then((movie) => {
-      res.status(201).json(movie);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
+      .then((genre) => {
+          res.status(201).json(genre);
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+      });
 });
 
 // -------- Users --------
@@ -188,7 +184,24 @@ app.put('/users/:Username', (req, res) => {
 // Add a single movie to user's favorites list
 app.post('/users/:Username/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
-      $push: { FavoriteMovies: req.params.MovieID }
+     $push: { FavoriteMovies: req.params.MovieID }
+   },
+   { new: true }, // ensures the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
+});
+
+
+// DELETE movie from user's favorites list
+app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+      $pull: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }, 
   (err, updatedUser) => {
@@ -201,15 +214,14 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
   });
 });
 
-
-// DELETE movie from user's favorites list
+// DELETE user from movie app
 app.delete('/users/:Username', (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.Username + ' was not found');
+        res.status(400).send(req.params.Username + ' couldn\'t be found. Check the spelling of the username and try again.');
       } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
+        res.status(200).send(req.params.Username + ' has been removed from the movie app.');
       }
     })
     .catch((err) => {
@@ -218,21 +230,6 @@ app.delete('/users/:Username', (req, res) => {
     });
 });
 
-// DELETE user from movie app
-app.delete('/users/:Username/', (req, res) => {
-  Users.findOneAndRemove({ Username: req.params.Username })
-    .then((user) => {
-      if (!user) {
-        res.status(400).send(req.params.Username + ' couldn\'t be found. Check the spelling of the username and try again.')
-      } else {
-        res.status(200).send(req.params.Username) + ' has been removed from the movie app.'
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
 
 
 
