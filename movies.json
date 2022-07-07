@@ -1,0 +1,378 @@
+{
+	"_id": {
+		"$oid": "62c319b0b16106ca5a07b823"
+	},
+	"Title": "Silence of the Lambs",
+	"Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+	"Genre": {
+		"Name": "Thriller",
+		"Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+	},
+	"Director": {
+		"Name": "Jonathan Demme",
+		"Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+		"Birth": "1944",
+		"Death": "2017"
+	},
+	"Actors": [
+		"Gregory Walcott",
+		"Tom Keene",
+		"Mona McKinnon",
+		"Duke Moore"
+	],
+	"ImagePath": "silenceofthelambs.png",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31d0eb16106ca5a07b824"
+	},
+	"Title": "Hard Ticket to Hawaii",
+	"Description": "In Hawaii, an undercover DEA agent and her civilian friend stumble upon a drug-trafficking operation, and have to enlist the help of all their colleagues/friends to go after the vicious drug kingpin.",
+	"Genre": {
+		"Name": "Action",
+		"Description": "A clear division between good and evil. Lots of fighting and set pieces. Their pacing and structure are built around scenes like car chases and their climaxes often have the biggest set-pieces."
+	},
+	"Director": {
+		"Name": "Andy Sidaris",
+		"Bio": "Born in Chicago, Illinois, he was an actor and a pioneer director of TV sports shows. He directed NFL Monday Night Football (1970) and earned an Emmy for his work directing the televised 1968 Summer Olympics in 1969. He died from throat cancer on March 7, 2007, in Beverly Hills, CA.",
+		"Birth": "1931-02-30",
+		"Death": "2007-03-07"
+	},
+	"Actors": [
+		"Ronn Moss",
+		"Dona Speir",
+		"Hope Marie Carlton",
+		"Harold Diamond"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BNDgwNjhmZmQtOTBlNi00MWQ4LTk4OWMtMDkxNmQ4NjhlNzk5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31d1db16106ca5a07b825"
+	},
+	"Title": "The Room",
+	"Description": "Johnny is a successful bank executive who lives quietly in a San Francisco townhouse with his fiancée, Lisa. One day, putting aside any scruple, she seduces Johnny's best friend, Mark. From there, nothing will be the same again.",
+	"Genre": {
+		"Name": "Drama",
+		"Description": "Dramas frequently follow characters you'd see as your friends, neighbors, and family dealing with the struggles of everyday life. They usually take place in a home, office setting, or with a group of characters forced to interact day to day."
+	},
+	"Director": {
+		"Name": "Tommy Wiseau",
+		"Bio": "An American actor, director, screenwriter & producer. He trained to be an actor at American Conservatory Theater, Vince Chase Workshop, Jean Shelton Acting Lab, Laney College, and Stella Adler Academy of Acting.",
+		"Birth": "1955-10-03",
+		"Death": ""
+	},
+	"Actors": [
+		"Tommy Wiseau",
+		"Juliette Danielle",
+		"Greg Sestero",
+		"Philip Haldiman"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BYjEzN2FlYmYtNDkwMC00NGFkLWE5ODctYmE5NmYxNzE2MmRiXkEyXkFqcGdeQXVyMjMwODc5Mw@@._V1_UY209_CR0,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31dfbb16106ca5a07b826"
+	},
+	"Title": "Birdemic",
+	"Description": "A horde of mutated birds descends upon the quiet town of Half Moon Bay, California. With the death toll rising, Two citizens manage to fight back, but will they survive Birdemic?",
+	"Genre": {
+		"Name": "Horror",
+		"Description": "The final girl, the \"not dead yet\" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
+	},
+	"Director": {
+		"Name": "James Nguyen",
+		"Bio": "Founder of Moviehead.com, an online movie theater. In 2001, he produced and directed Julie and Jack - a romantic thriller about love and spirituality. In 2004, he completed a second film: Replica - a romantic thriller.",
+		"Birth": "1966-09-01",
+		"Death": ""
+	},
+	"Actors": [
+		"Alan Bagh",
+		"Whitney Moore",
+		"Tippi Hedren",
+		"Janae Caster"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BZTMyNmM1ODYtZmU3OS00NWIwLTg0MWEtNDExY2NlMzYzNTQ4XkEyXkFqcGdeQXVyNzMzMjU5NDY@._V1_UY209_CR2,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31e20b16106ca5a07b827"
+	},
+	"Title": "Samurai Cop",
+	"Description": "Joe Marshall and Frank Washington are two tenacious police detectives who seek at all costs to stop the Katana, a renegade Yakuza gang composed of violent and sadistic killers who want to lead the drug trade in Los Angeles.",
+	"Genre": {
+		"Name": "Crime",
+		"Description": "We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released."
+	},
+	"Director": {
+		"Name": "Amir Shervan",
+		"Bio": "Studied theater in Pasadena California in the 1940s and returned to Iran to begin his career in film. During the 1979 Iranian Revolution, all movies were subject to review by the Iranian government and many of them were banned due to their content while others were \"purified\" or altered to suit the growing anti-western and pro-Islamic sentiment. This caused a pause in his film career starting in 1980 and ending with his move to the United States where he settled in California.",
+		"Birth": "1929-05-24",
+		"Death": "2006-11-01"
+	},
+	"Actors": [
+		"Robert Z'Dar",
+		"Mathew Karedas",
+		"Janis Farley",
+		"Mark Frazer"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BZjI2N2Q3NDUtZTI3MS00ZmVmLWFlN2ItNzBmODQ3ZDExNjZkXkEyXkFqcGdeQXVyMjM2OTAxNg@@._V1_UY209_CR8,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31e37b16106ca5a07b828"
+	},
+	"Title": "Troll 2",
+	"Description": "A vacationing family discovers that the entire town they're visiting is inhabited by goblins, disguised as humans, who plan to eat them.",
+	"Genre": {
+		"Name": "Fantasy",
+		"Description": "These kinds of movies and tv shows usually have mysticism, some sort of royalty, humanoid creates like Elves, Orcs, and Hobbits, and loys of magic. You can expect sorcery and some great set pieces."
+	},
+	"Director": {
+		"Name": "Claudio Fragasso (as Drake Floyd)",
+		"Bio": "His passion for cinema when he was given a camera in super 8.  He began shooting many films, involving his friends. He's a versatile director who has tried all genres, always experimenting with new things.",
+		"Birth": "1951-11-02",
+		"Death": ""
+	},
+	"Actors": [
+		"Michael Paul Stephenson",
+		"George Hardy",
+		"Margo Prey",
+		"Connie Young"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BZmQ4MzZlZTAtNDRhMC00MTQ2LTkyN2YtNTQ1ZTliM2UwMWNhXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_UY209_CR0,0,140,209_AL_.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "62c31e4fb16106ca5a07b829"
+	},
+	"Title": "Behind the Mask: The Rise of Leslie Vernon",
+	"Description": "The next great psycho horror slasher has given a documentary crew exclusive access to his life as he plans his reign of terror over the sleepy town of Glen Echo.",
+	"Genre": {
+		"Name": "Horror",
+		"Description": "The final girl, the \"not dead yet\" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
+	},
+	"Director": {
+		"Name": "Scott Glosserman",
+		"Bio": "A writer/director/producer, and CEO of Gathr.",
+		"Birth": "1976-11-21",
+		"Death": ""
+	},
+	"Actors": [
+		"Nathan Baesel",
+		"Angela Goethals",
+		"Zelda Rubinstein",
+		"Robert Englund"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMjE5MDE3MTQxOV5BMl5BanBnXkFtZTcwNDY0NzA0MQ@@._V1_UY209_CR1,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31e61b16106ca5a07b82a"
+	},
+	"Title": "Crippled Avengers",
+	"Description": "Three men, crippled by an evil warlord, become friends and learn kung fu with the help of an old teacher and his idiot pupil.",
+	"Genre": {
+		"Name": "Kung Fu",
+		"Description": "A subgenre of martial arts films and Hong Kong action cinema set in the contemporary period and featuring realistic martial arts."
+	},
+	"Director": {
+		"Name": "Chang Cheh",
+		"Bio": "He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti.",
+		"Birth": "1923-02-10",
+		"Death": "2002-06-22"
+	},
+	"Actors": [
+		"Kuan Tai Chen",
+		"Feng Lu",
+		"Phillip Chung-Fung Kwok",
+		"Meng Lo"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BOTgzMjMxOTYtYzQzZi00NWM1LTljZDMtN2UwZWE3MjlhZDdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY209_CR3,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31e89b16106ca5a07b82b"
+	},
+	"Title": "Miami Connection",
+	"Description": "A martial arts rock band goes up against a band of motorcycle ninjas who have tightened their grip on Florida's narcotics trade.",
+	"Genre": {
+		"Name": "Crime",
+		"Description": "We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released."
+	},
+	"Director": {
+		"Name": "Woo-sang (Richard) Park",
+		"Bio": "He was a director and writer, known for American Chinatown (1995), Gang Justice (1991), and Miami Connection (1987).",
+		"Birth": "1943-01-02",
+		"Death": "2006-04-11"
+	},
+	"Actors": [
+		"Y.K. Kim",
+		"Vincent Hirsch",
+		"Joseph Diamand",
+		"Maurice Smith"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMjA4MjcxMjYzNl5BMl5BanBnXkFtZTcwMTcyNDc1OA@@._V1_UY209_CR0,0,140,209_AL_.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "62c31f07b16106ca5a07b82c"
+	},
+	"Title": "Five Element Ninjas",
+	"Description": "A Chinese martial arts school is infiltrated and destroyed by ninjas. Tian Hao survives the massacre and seeks to uncover the trickery of ninjutsu in order to beat the Five Element Ninjas and avenge his family.",
+	"Genre": {
+		"Name": "Kung Fu",
+		"Description": "A subgenre of martial arts films and Hong Kong action cinema set in the contemporary period and featuring realistic martial arts."
+	},
+	"Director": {
+		"Name": "Chang Cheh",
+		"Bio": "He was the leading Martial Arts director in Hong Kong in the 1970s, now with close to 100 films to his name. He has influenced other directors such as John Woo and Liu Chiau Liang, and made famous such Hong Kong stars as Phillip Chung-Fung Kwok, Fu Sheng, and Lung Ti.",
+		"Birth": "1923-02-10",
+		"Death": "2002-06-22"
+	},
+	"Actors": [
+		"Tien-Chi Cheng",
+		"Tien-Hsiang Lung",
+		"Meng Lo",
+		"Michael Wai-Man Chan"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BODc5NzdkMzktZWM5OS00MzJiLTk2NTAtNzdiMmM1ODFlOTY5XkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_UY209_CR1,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c31f3ab16106ca5a07b82d"
+	},
+	"Title": "Plan 9 From Outer Space",
+	"Description": "Evil aliens attack Earth and set their terrible \"Plan 9\" into action. As the aliens resurrect the dead of the Earth, the lives of the living are in danger.",
+	"Genre": {
+		"Name": "Scifi",
+		"Description": "Aliens, spaceships, time travel, and technology. This genre needs to tell us if we are worth saving or maybe the machines need to take over. Science fiction addresses our society and its problems. It seeks to tell us about the way we can handle it if we only listen in the present."
+	},
+	"Director": {
+		"Name": "Ed Wood",
+		"Bio": "An American filmmaker, actor, and pulp novel author. In the 1950s, Wood directed several low-budget science fiction, crime, and horror films that later became cult classics.",
+		"Birth": "1924-10-10",
+		"Death": "1978-12-10"
+	},
+	"Actors": [
+		"Gregory Walcott",
+		"Tom Keene",
+		"Mona McKinnon",
+		"Duke Moore"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "62c354c2f3a3dc1a7e6952d1"
+	},
+	"Title": "House on Haunted Hill",
+	"Description": "A millionaire offers $10,000 to five people who agree to be locked in a large, spooky, rented house overnight with him and his wife.",
+	"Genre": {
+		"Name": "Crime",
+		"Description": "We often see a courtroom scene, gunplay, violence, and ruthless tactics. There are times the law can be seen as good and bad, depending on who you root for and when the movie was released."
+	},
+	"Director": {
+		"Name": "William Castle",
+		"Bio": "He was a director and producer, known for House on Haunted Hill (1959), Homicidal (1961), and The Lady from Shanghai (1947). He was married to Ellen. ",
+		"Birth": "1914-04-24",
+		"Death": "1977-05-31"
+	},
+	"Actors": [
+		"Vincent Price",
+		"Carol Ohmart",
+		"Richard Long",
+		"Alan Marshal"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMmM4YzQxMmYtYTRjMy00MWFjLWFmY2YtZDBiYmI5ZjVlMWQxXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "62c355b6f3a3dc1a7e6952d2"
+	},
+	"Title": "Return of the Living Dead",
+	"Description": "When two bumbling employees at a medical supply warehouse accidentally release a deadly gas into the air, the vapors cause the dead to rise again as zombies.",
+	"Released": "1985",
+	"Genre": {
+		"Name": "Horror",
+		"Description": "The final girl, the \"not dead yet\" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
+	},
+	"Director": {
+		"Name": "Dan O'Bannon",
+		"Bio": "Was inspired at an early age by EC Comics like Tales from the Crypt and old horror films that he saw in St. Louis. He even wrote a few stories for Heavy Metal magazine (which also showed up in the film). O'Bannon got his start when he and John Carpenter collaborated on the cult sci-fi film Dark Star (1974). ",
+		"Birth": "1946-09-30",
+		"Death": "2009-12-17"
+	},
+	"Actors": [
+		"Clu Gulager",
+		"James Karen",
+		"Don Calfa",
+		"Thom Mathews"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BNmNlM2RmZTEtNGVhNS00MjU3LWI1OWUtMWI5MThlYTVjM2M5XkEyXkFqcGdeQXVyMTUzMDUzNTI3._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": true
+}
+{
+	"_id": {
+		"$oid": "62c358d2f3a3dc1a7e6952d3"
+	},
+	"Title": "ThanksKilling",
+	"Released": "2009",
+	"Description": "A homicidal turkey axes off college kids during Thanksgiving break.",
+	"Genre": {
+		"Name": "Horror",
+		"Description": "The final girl, the \"not dead yet\" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
+	},
+	"Director": {
+		"Name": "Jordan Downey",
+		"Bio": "Jordan Downey is a writer and director from Ohio and no stranger to the horror community. While in college, he was an intern under Wes Craven and broke onto the scene with his first feature, the cult horror film ThanksKilling. The success of ThanksKilling spawned a fan-funded sequel, ThanksKilling 3, and ThanksKilling: The Musical which toured to sold-out crowds. In the years since, his shorts Techno Western and Critters: Bounty Hunter earned praise amongst fans and genre outlets alike, but it was his third feature The Head Hunter which elevated the filmmaker to new heights.",
+		"Birth": "1986-05-16",
+		"Death": ""
+	},
+	"Actors": [
+		"Wanda Lust",
+		"Natasha Cordova",
+		"Lindsey Anderson",
+		"Lance Predmore"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMTYwNDMzODI0Ml5BMl5BanBnXkFtZTgwNzMzODQyOTE@._V1_UY209_CR3,0,140,209_AL_.jpg",
+	"Featured": false
+}
+{
+	"_id": {
+		"$oid": "62c359a0f3a3dc1a7e6952d4"
+	},
+	"Title": "Dr. Goldfoot and the Bikini Machine",
+	"Released": "1965",
+	"Description": "Skirt-chasing SIC agent Craig Gamble and millionaire bachelor Todd Armstrong set out to foil mad scientist Dr. Goldfoot's plot to use his army of bikini-clad robots to seduce wealthy men into signing over their assets.",
+	"Genre": {
+		"Name": "Scifi",
+		"Description": "Aliens, spaceships, time travel, and technology. This genre needs to tell us if we are worth saving or maybe the machines need to take over. Science fiction addresses our society and its problems. It seeks to tell us about the way we can handle it if we only listen in the present."
+	},
+	"Director": {
+		"Name": "Norman Taurog",
+		"Bio": "A successful child actor (on stage from 1907) and rather less successful romantic lead, baby-faced Norman Taurog found being behind the camera a more rewarding experience. Before becoming a director, he paid his dues as a prop man and editor. By 1919, he was put in charge of two-reel comedies, starring the comic Larry Semon.",
+		"Birth": "1899-02-23",
+		"Death": "1981-04-07"
+	},
+	"Actors": [
+		"Vincent Price",
+		"Frankie Avalon",
+		"Dwayne Hickman",
+		"Susan Hart"
+	],
+	"ImagePath": "https://m.media-amazon.com/images/M/MV5BMjEzMzQwMTA4NV5BMl5BanBnXkFtZTgwMzcxMTkwMzE@._V1_UX140_CR0,0,140,209_AL_.jpg",
+	"Featured": false
+}
