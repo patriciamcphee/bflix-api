@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, 
 
 // Default message on Home page
 app.get('/', (req, res) => {
-  res.send('Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!');
+  res.send('<h1>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h1>');
 });
 
 //send to documentation
@@ -226,7 +226,7 @@ app.delete('/users/:Username', passport.authenticate("jwt", { session: false }),
       if (!user) {
         res.status(400).send(req.params.Username + ' couldn\'t be found. Check the spelling of the username and try again.');
       } else {
-        res.status(200).send(req.params.Username + ' has been removed from the movie app.');
+        res.status(200).send('We\'re sorry to see you go. As you requested, ' + req.params.Username + ' has been removed from the movie app.');
       }
     })
     .catch((err) => {
