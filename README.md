@@ -9,7 +9,7 @@ This API lets users access information about different B-movies, such as directo
 
 - [Get data about a single movie by title](#get-data-about-a-single-movie-by-title)
 
-- [Get data about a genre by title](#get-data-about-a-genre-by-title)
+- [Get data about a genre by name](#get-data-about-a-genre-by-name)
 
 - [Get data about a director by name](#get-data-about-a-director-by-name)
 
@@ -84,7 +84,7 @@ A JSON object holding data about a single movie containing the description, genr
 }
 ```
 
-## Get data about a genre by title
+## Get data about a genre by name
 
 
 | Endpoint | HTTP Method | Request | Response |

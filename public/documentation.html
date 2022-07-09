@@ -10,59 +10,44 @@
 	    <script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
-		<script>
-			tailwind.config = {
-			  theme: {
-				extend: {
-				  colors: {
-					clifford: '#da373d',
-				  }
-				}
-			  }
-			}
-		  </script>
-		    <style type="text/tailwindcss">
-				@layer utilities {
-				  .content-auto {
-					content-visibility: auto;
-				  }
-				}
-			  </style>
 		</head>
 		<body>
 
-			<div class="container px-20 mx-20 mt-10">
+<div class="container px-10 mx-auto mt-10">
 
-<div class="mt-4"></div>
 <div class="md:flex">
 	<div class="md:flex-shrink-0">
 	  <img class="rounded-lg" src="Group.png" alt="Movie camera">
 	</div>
 	<div class="mt-4 md:mt-0 md:ml-6">
-	  <p class="block mt-1 text-4xl font-bold leading-tight text-gray-900">
-		My B-Movie Flix API
-	  </p>
-	  <p class="mt-2 text-gray-600">
-		This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
-	  </p>
+		<article class="prose prose-img:rounded-xl prose-p:text-gray-600 prose-a:text-blue-600">
+			<h1>My B-Movie Flix API</h1>
+			<p>
+				This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
+			  </p>
+		  </article>
 	</div>
   </div>
+  
+  
 
-  <div class="mt-4"></div>
+  <div class="mt-4 mb-6">
 					<zero-md>
 						<script type="text/markdown">
+
 >**Table of contents**
 >
 >- [Get a list of all movies](#get-a-list-of-all-movies)
 >- [Get data about a single movie by title](#get-data-about-a-single-movie-by-title)
->- [Get data about a genre by title](#get-data-about-a-genre-by-title)
+>- [Get data about a genre by name](#get-data-about-a-genre-by-name)
 >- [Get data about a director by name](#get-data-about-a-director-by-name)
 >- [User registration](#user-registration)
 >- [Update user info](#update-user-info)
 >- [Unregister user (delete user)](#unregister-user-delete-user)
 >- [Add a movie to a user's "favorites" list](#add-a-movie-to-a-users-favorites-list)
 >- [Remove a movie from the user's "favorites" list](#remove-a-movie-from-the-users-favorites-list) 
-
+							
+---
 
 ## Get a list of all movies
 
@@ -125,7 +110,7 @@ A JSON object holding data about a single movie containing the description, genr
 }
 ```
 
-## Get data about a genre by title
+## Get data about a genre by name
 
 
 | Endpoint | HTTP Method | Request | Response |
@@ -338,7 +323,7 @@ A JSON object that holds the updated data for the user.
 							  </script>
 	
 						</zero-md>
-
+					</div>
 			  </div>
 
 
