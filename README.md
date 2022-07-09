@@ -64,7 +64,7 @@ A JSON object holding data about a single movie containing the description, genr
 {
     "Genre": {
         "Name": "Horror",
-        "Description": "The final girl, the \"not dead yet\" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
+        "Description": "The final girl, the "not dead yet" scare, and the dystopian endings. Horror is famous for having story beats that we come to expect like jump scares. Lean into them and find ways to subvert. You have subsets like haunted houses, slashers, zombies, evil creatures, and other subgenres."
     },
     "Director": {
         "Name": "Dan O'Bannon",
