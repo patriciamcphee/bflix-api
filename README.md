@@ -2,9 +2,7 @@
 
 # My B-Movie Flix API
 
-
-
-This API lets users access information about different B-movies, such as directors and actors. It also lets them sign up so they can create a list of their favorite B-movies.
+This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
 
 **In this article**
 
