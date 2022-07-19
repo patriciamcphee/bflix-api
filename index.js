@@ -1,36 +1,51 @@
 const express = require('express'),
+bodyParser = require('body-parser'),
   morgan = require('morgan'),
-  bodyParser = require('body-parser'),
+  app = express(),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
+  const { check, validationResult } = require('express-validator');
 
-const app = express();
-
+//log basic data
+app.use(morgan('common'));
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//define cors
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://patriciamcphee.github.io/bflix-api'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn\’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-//log basic data
-app.use(morgan('common'));
-
-//serve static files
-app.use(express.static('public'));
-
+const Movies = Models.Movie;
+const Users = Models.User;
 // Connect to database using mongoose to perform CRUD
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  family: 4 
+});
 
 
 // Default message on Home page
 app.get('/', (req, res) => {
-  res.send('<h1>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h1>');
+  res.send('<h2>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h2>');
 });
 
 //send to documentation
@@ -38,10 +53,10 @@ app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', { root: __dirname });
 });
 
-app.get('/secreturl', (req, res) => {
-  res.send('This is a super secret url with top-secret content.');
-});
 
+app.get('/secreturl', (req, res) => {
+  res.send('<h1>This is a super secret url with top-secret content.</h1>');
+});
 
 // -------- Movies --------
 
@@ -130,19 +145,22 @@ app.get('/users/:Username', passport.authenticate("jwt", { session: false }), (r
   Birthday: Date
 }*/
 app.post('/users', passport.authenticate("jwt", { session: false }), (req, res) => {
+  let hashPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
-        return res.status(400).send('It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
+        return res.status(400).send('Darn! It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
       } else {
         Users
           .create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
-          .then((user) =>{res.status(201).json(user) })
+          .then((user) => {
+            res.status(201).json(user) 
+          })
         .catch((error) => {
           console.error(error);
           res.status(500).send('Error: ' + error);
@@ -187,8 +205,10 @@ app.put('/users/:Username', passport.authenticate("jwt", { session: false }), (r
 });
 
 // Add a single movie to user's favorites list
-app.put('/users/:Username/movies/:MovieID', passport.authenticate("jwt", { session: false }), (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username }, 
+    {
      $push: { FavoriteMovies: req.params.MovieID }
    },
    { new: true }, // ensures the updated document is returned
@@ -235,6 +255,8 @@ app.delete('/users/:Username', passport.authenticate("jwt", { session: false }),
     });
 });
 
+//serve static files
+app.use(express.static('public'));
 
 
 
