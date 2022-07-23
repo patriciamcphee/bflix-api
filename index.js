@@ -17,9 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 
-app.use(cors());
-
 /*
+app.use(cors());
+*/
+
 let allowedOrigins = ['http://localhost:8080', 'https://secret-citadel-99176.herokuapp.com/'];
 
 app.use(cors({
@@ -32,7 +33,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
+
 let auth = require('./auth')(app);
 
 const passport = require('passport');
