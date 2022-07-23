@@ -1,5 +1,23 @@
+const express = require('express'),
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  Models = require('./models.js');
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const passport = require('passport');
+require('./passport');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+const app = express();
+
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const { check, validationResult } = require('express-validator');
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -12,28 +30,8 @@ app.use(cors({
   }
 }));
 
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
+require('./auth')(app);
 
-const express = require('express'),
-  morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
-  Models = require('./models.js');
-
-const app = express();
-
-
-const { check, validationResult } = require('express-validator');
-
-//Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
-const Movies = Models.Movie;
-const Users = Models.User;
 
 //log basic data
 app.use(morgan('common'));
