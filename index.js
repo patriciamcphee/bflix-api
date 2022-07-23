@@ -1,22 +1,39 @@
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
-
 const app = express();
 
+
+const { check, validationResult } = require('express-validator');
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
+
+const Movies = Models.Movie;
+const Users = Models.User;
 
 //log basic data
 app.use(morgan('common'));
@@ -25,7 +42,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 // Connect to database using mongoose to perform CRUD
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
 
 
 // Default message on Home page
@@ -129,10 +146,30 @@ app.get('/users/:Username', passport.authenticate("jwt", { session: false }), (r
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', passport.authenticate("jwt", { session: false }), (req, res) => {
-  Users.findOne({ Username: req.body.Username })
+app.post('/users',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+
+  // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists
     .then((user) => {
-      if (user) {
+      if (user) { //If the user is found, send a response stating that it already exists
         return res.status(400).send('It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
       } else {
         Users
@@ -245,6 +282,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-app.listen(8080, () => {
-  console.log('Thank you for listening to P.O.R.T. 8080!');
+const port = process.env.PORT || 8080
+app.listen(port, '0.0.0.0', () => {
+  console.log('Thank you for listening to P.O.R.T. ' + port + '!!');
 });

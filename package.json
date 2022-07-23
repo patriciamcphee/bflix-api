@@ -1,25 +1,28 @@
 {
   "dependencies": {
-  "@headlessui/react": "^1.6.6",
-  "@heroicons/react": "^1.0.6",
-  "body-parser": "^1.20.0",
-  "express": "^4.18.1",
-  "foundation-sites": "^6.7.4",
-  "jsonwebtoken": "^8.5.1",
-  "mongodb": "^4.7.0",
-  "mongoose": "^6.4.2",
-  "morgan": "^1.10.0",
-  "node": "^17.7.2",
-  "passport": "^0.6.0",
-  "passport-jwt": "^4.0.0",
-  "passport-local": "^1.0.0",
-  "react": "^18.1.0",
-  "react-dom": "^18.1.0",
-  "uuid": "^8.3.2",
-  "zero-md": "^2.3.5"
+    "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^1.0.6",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "foundation-sites": "^6.7.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.2",
+    "morgan": "^1.10.0",
+    "node": "^17.7.2",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "uuid": "^8.3.2",
+    "zero-md": "^2.3.5"
   },
   "scripts": {
-    "start" : "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "name": "b-flix",
@@ -27,25 +30,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
-  "@tailwindcss/forms": "^0.5.2",
-  "@tailwindcss/typography": "^0.5.3",
-  "autoprefixer": "^10.4.7",
-  "eslint": "^8.15.0",
-  "motion-ui": "^2.0.3",
-  "postcss": "^8.4.14",
-  "tailwindcss": "^3.1.5"
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.3",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.15.0",
+    "motion-ui": "^2.0.3",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.5"
   },
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/patriciamcphee/bflix-api.git"
+    "type": "git",
+    "url": "git+https://github.com/patriciamcphee/bflix-api.git"
   },
   "author": "patriciamcphee",
   "license": "ISC",
   "bugs": {
-  "url": "https://github.com/patriciamcphee/bflix-api/issues"
+    "url": "https://github.com/patriciamcphee/bflix-api/issues"
   },
   "homepage": "https://github.com/patriciamcphee/bflix-api#readme",
   "keywords": [
-  "b-movies"
+    "b-movies"
   ]
-  }
+}
