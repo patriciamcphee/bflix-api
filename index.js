@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'https://secret-citadel-99176.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
