@@ -1,23 +1,25 @@
+const dotdev = require('dotenv');
+dotenv.config()
 const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-const passport = require('passport');
-require('./passport');
-
-const app = express();
-
 const Movies = Models.Movie;
 const Users = Models.User;
+
+const app = express();
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-const { check, validationResult } = require('express-validator');
+
+app.use(cors());
+
+/*
 let allowedOrigins = ['http://localhost:8080', 'https://secret-citadel-99176.herokuapp.com/'];
 
 app.use(cors({
@@ -30,9 +32,13 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-
+*/
 let auth = require('./auth')(app);
 
+const passport = require('passport');
+require('./passport');
+
+const { check, validationResult } = require('express-validator');
 
 //log basic data
 app.use(morgan('common'));
