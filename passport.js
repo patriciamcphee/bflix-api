@@ -7,6 +7,7 @@ let Users = Models.User,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
 
+  //user login endpoint
 passport.use(new LocalStrategy({
   usernameField: 'Username',
   passwordField: 'Password'
@@ -17,12 +18,14 @@ passport.use(new LocalStrategy({
       console.log(error);
       return callback(error);
     }
-
+    if (!user) {
+      console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
+      return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
+    }
     if (!user.validatePassword(password)) {
       console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
       return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
     }
-
     console.log('Hot dog! It\'s finished.');
     return callback(null, user);
   });
@@ -30,7 +33,7 @@ passport.use(new LocalStrategy({
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'your_jwt_secret'
+  secretOrKey: 'gQMTKHxbNQHCX63m'
 }, (jwtPayload, callback) => {
   return Users.findById(jwtPayload._id)
     .then((user) => {

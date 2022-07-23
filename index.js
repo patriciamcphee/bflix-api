@@ -1,54 +1,65 @@
 const express = require('express'),
-bodyParser = require('body-parser'),
   morgan = require('morgan'),
-  app = express(),
-  mongoose = require('mongoose'),
+  path = require('path'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid');
+
+const passport = require('passport');
+require('./passport');
+
+const mongoose = require('mongoose'),
   Models = require('./models.js');
 
-  const { check, validationResult } = require('express-validator');
-
-//log basic data
-app.use(morgan('common'));
+const app = express();
 
 //Middleware
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //define cors
 const cors = require('cors');
+
+//validation
+const { check, validationResult } = require('express-validator');
+
 let allowedOrigins = ['http://localhost:8080', 'http://patriciamcphee.github.io/bflix-api'];
 
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn\’t allow access from origin ' + origin;
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
       return callback(new Error(message ), false);
     }
     return callback(null, true);
   }
-}));
-
+})
+);
 let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
+
+app.use(bodyParser.json());
+app.use(morgan('common'));
 
 const Movies = Models.Movie;
 const Users = Models.User;
+
 // Connect to database using mongoose to perform CRUD
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
+//mongoose.connect( process.env.CONNECTION_URI, {
   useNewUrlParser: true, 
   useUnifiedTopology: true, 
   family: 4 
 });
 
+//serve static files
+app.use(express.static('public'));
 
-// Default message on Home page
+//Read default message on Home page
 app.get('/', (req, res) => {
   res.send('<h2>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h2>');
 });
 
-//send to documentation
+//send to documentation in public folder
 app.get('/documentation', (req, res) => {                  
   res.sendFile('public/documentation.html', { root: __dirname });
 });
@@ -61,10 +72,10 @@ app.get('/secreturl', (req, res) => {
 // -------- Movies --------
 
 // GET the list of data about ALL movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
-      res.status(201).json(movies);
+      res.status(200).json(movies);
     })
     .catch((error) => {
       console.error(error);
@@ -135,7 +146,7 @@ app.get('/users/:Username', passport.authenticate("jwt", { session: false }), (r
     });
 });
 
-// User registration
+// User registration/create user
 /* We’ll expect JSON in this format
 {
   ID: Integer,
@@ -144,34 +155,50 @@ app.get('/users/:Username', passport.authenticate("jwt", { session: false }), (r
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', passport.authenticate("jwt", { session: false }), (req, res) => {
-  let hashPassword = Users.hashPassword(req.body.Password);
-  Users.findOne({ Username: req.body.Username })
-    .then((user) => {
-      if (user) {
-        return res.status(400).send('Darn! It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
-      } else {
-        Users
-          .create({
-            Username: req.body.Username,
-            Password: hashedPassword,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
+app.post('/users', [
+  check('Username', 'Username is required').isLength({ min: 5 }),
+  check(
+    'Username',
+    'Username contains non alphanumeric characters - not allowed.'
+  ).isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail(),
+  ],
+  (req, res) => {
+    //check validation object for errors
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    let hashPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username }) //search to see if a users with that requested username exists
+      .then((user) => {
+        if (user) { //if the user is found, send a response that username already exist
+          return res.status(400).send('Darn! It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday
+            })
+            .then((user) => {
+              res.status(201).json(user) 
+            })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
           })
-          .then((user) => {
-            res.status(201).json(user) 
-          })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
       }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-});
+    );
+  }
+);
 
 // Update user info
 /* We’ll expect JSON in this format
@@ -184,7 +211,18 @@ app.post('/users', passport.authenticate("jwt", { session: false }), (req, res) 
   (required)
   Birthday: Date
 }*/
-app.put('/users/:Username', passport.authenticate("jwt", { session: false }), (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
+  [
+  check('Username', 'Username is required').isLength({ min: 5 }),
+  check(
+    'Username',
+    'Username contains non alphanumeric characters - not allowed.'
+  ).isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail(),
+  ],
+  passport.authenticate('jwt', { session: false }), (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
@@ -255,8 +293,7 @@ app.delete('/users/:Username', passport.authenticate("jwt", { session: false }),
     });
 });
 
-//serve static files
-app.use(express.static('public'));
+
 
 
 
@@ -267,6 +304,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-app.listen(8080, () => {
-  console.log('Thank you for listening to P.O.R.T. 8080!');
+const port = process.env.PORT || 8080
+app.listen(port, '0.0.0.0', () => {
+  console.log('Thank you for listening to P.O.R.T. ' + port + '!!');
 });
