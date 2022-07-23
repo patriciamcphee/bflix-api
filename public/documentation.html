@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 	<head>
 		<meta charset = "UTF-8"/>
 		<meta name = "viewport" content="width = device-width, initial-scale = 1.0"/>
@@ -11,6 +11,8 @@
 		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 		</head>
 		<body>
+			<div id="container" style="padding: 50px" />
+			<script>var mountNode = document.getElementById('container');</script>
 
 <div class="container mx-auto mt-10">
 
@@ -179,10 +181,9 @@ A JSON object holding the data about the new user.
 
 ```json
 {
-    "Username": "bambammcgee",
-    "Password": "NUng``GQE@c]",
-    "Email": "bbmcgee@email.com",
-    "Birthday": "1987-07-11"
+	"Username": "bambammcgee",
+	"Password": "NUng``GQE@c]",
+	"Email": "bbmcgee@email.com"
 }
 ```
 
@@ -194,13 +195,12 @@ A JSON object holding the new user's data with a system-generated ID.
 
 ```json
 {
-	"_id": "62c1c7e756d435a51a2e8f65",
 	"Username": "bambammcgee",
 	"Password": "NUng``GQE@c]",
 	"Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
-    "FavoriteMovies": [],
-    "__v": 0
+	"FavoriteMovies": [],
+	"_id": "62c0764a5efee8cbbeadeee3",
+	"__v": 0
 }
 ```
 
@@ -219,7 +219,7 @@ A JSON object that holds the updated information about the user.
 
 ```json
 {
-	"Username": "bambammcgee",
+	"Username": "patriciamcphee",
 	"Password": "jFB6DGX7nhXfpxon"
 }
 ```
@@ -230,13 +230,14 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62c1c7e756d435a51a2e8f65",
-	"Username": "bambammcgee",
+	"_id": "62af73cd90779f9b519bda60",
+	"Username": "patriciamcphee",
 	"Password": "jFB6DGX7nhXfpxon",
-	"Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
-	"FavoriteMovies": [	],
-	"__v": 0
+		"Email": "somethingrandom@email.com",
+		"FavoriteMovies": [
+			"62c319b0b16106ca5a07b823"
+		],
+		"__v": 0
 }
 ```
 
@@ -258,7 +259,7 @@ None
 A text confirmation message indicating the user has been removed from the movie app. 
 
 ```
-We're sorry to see you go. As you requested, bambammcgee has been removed from the movie app.
+bambammcgee has been removed from the movie app.
 ```
 
 
@@ -282,11 +283,10 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62c1c7e756d435a51a2e8f65",
-	"Username": "bambammcgee",
-	"Password": "jFB6DGX7nhXfpxon",
-	"Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
 	"FavoriteMovies": [
 		"62c31dfbb16106ca5a07b826"
 	],
@@ -312,11 +312,10 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62c1c7e756d435a51a2e8f65",
-	"Username": "bambammcgee",
-	"Password": "jFB6DGX7nhXfpxon",
-	"Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
+	"_id": "62c346d4b258c5e174f0c93a",
+	"Username": "patriciamcphee",
+	"Password": "3)MFK+HZh%K-",
+	"Email": "somethingrandom@email.com",
 	"FavoriteMovies": [],
 	"__v": 0
 }
@@ -329,6 +328,7 @@ A JSON object that holds the updated data for the user.
 					</div>
 			  </div>
 
+			<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"></script>
 
 	</body>
 </html>
