@@ -3,21 +3,22 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
-const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
 const passport = require('passport');
 require('./passport');
 
+const app = express();
+
 const Movies = Models.Movie;
 const Users = Models.User;
-
-const app = express();
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const cors = require('cors');
 const { check, validationResult } = require('express-validator');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -30,7 +31,7 @@ app.use(cors({
   }
 }));
 
-require('./auth')(app);
+let auth = require('./auth')(app);
 
 
 //log basic data
@@ -40,7 +41,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 // Connect to database using mongoose to perform CRUD
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Default message on Home page
