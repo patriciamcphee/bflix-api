@@ -9,16 +9,13 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'blue': '#2264d1',
-      'purple': '#7e5bef',
-      'pink': '#ff49db',
-      'orange': '#ff7849',
-      'green': '#43a047',
-      'yellow': '#ebbf67',
-      'gray-dark': '#273444',
-      'gray': '#8492a6',
-      'gray-light': '#d3dce6',
-      'red': '#c8372d',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.slate,
+      green: colors.emerald,
+      purple: colors.violet,
+      yellow: colors.amber,
+      pink: colors.fuchsia,
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -45,7 +42,7 @@ module.exports = {
       },
     },
   },
-  plugins: [ 
+  plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
   ],

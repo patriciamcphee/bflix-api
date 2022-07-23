@@ -1,24 +1,26 @@
 
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 	<head>
 		<meta charset = "UTF-8"/>
 		<meta name = "viewport" content="width = device-width, initial-scale = 1.0"/>
 		<title>My Movie Flix API</title>
 		<!-- Stylesheets-->
+		<link href="../dist/output.css" rel="stylesheet">
 	    <script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 		</head>
 		<body>
-			<div id="container" style="padding: 50px" />
-			<script>var mountNode = document.getElementById('container');</script>
 
-<div class="container mx-auto mt-10">
+<div class="container px-10 mx-auto mt-10">
 
 <div class="md:flex">
+	<div class="md:flex-shrink-0">
+	  <img class="rounded-lg" src="Group.png" alt="Movie camera">
+	</div>
 	<div class="mt-4 md:mt-0 md:ml-6">
-		<article class="prose">
+		<article class="prose prose-img:rounded-xl prose-p:text-gray-600 prose-a:text-blue-600">
 			<h1>My B-Movie Flix API</h1>
 			<p>
 				This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
@@ -181,9 +183,10 @@ A JSON object holding the data about the new user.
 
 ```json
 {
-	"Username": "bambammcgee",
-	"Password": "NUng``GQE@c]",
-	"Email": "bbmcgee@email.com"
+    "Username": "bambammcgee",
+    "Password": "NUng``GQE@c]",
+    "Email": "bbmcgee@email.com",
+    "Birthday": "1987-07-11"
 }
 ```
 
@@ -195,12 +198,13 @@ A JSON object holding the new user's data with a system-generated ID.
 
 ```json
 {
+	"_id": "62c1c7e756d435a51a2e8f65",
 	"Username": "bambammcgee",
 	"Password": "NUng``GQE@c]",
 	"Email": "bbmcgee@email.com",
-	"FavoriteMovies": [],
-	"_id": "62c0764a5efee8cbbeadeee3",
-	"__v": 0
+    "Birthday": "1987-11-07T00:00:00.000Z",
+    "FavoriteMovies": [],
+    "__v": 0
 }
 ```
 
@@ -219,7 +223,7 @@ A JSON object that holds the updated information about the user.
 
 ```json
 {
-	"Username": "patriciamcphee",
+	"Username": "bambammcgee",
 	"Password": "jFB6DGX7nhXfpxon"
 }
 ```
@@ -230,14 +234,13 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62af73cd90779f9b519bda60",
-	"Username": "patriciamcphee",
+	"_id": "62c1c7e756d435a51a2e8f65",
+	"Username": "bambammcgee",
 	"Password": "jFB6DGX7nhXfpxon",
-		"Email": "somethingrandom@email.com",
-		"FavoriteMovies": [
-			"62c319b0b16106ca5a07b823"
-		],
-		"__v": 0
+	"Email": "bbmcgee@email.com",
+    "Birthday": "1987-11-07T00:00:00.000Z",
+	"FavoriteMovies": [	],
+	"__v": 0
 }
 ```
 
@@ -259,7 +262,7 @@ None
 A text confirmation message indicating the user has been removed from the movie app. 
 
 ```
-bambammcgee has been removed from the movie app.
+We're sorry to see you go. As you requested, bambammcgee has been removed from the movie app.
 ```
 
 
@@ -283,10 +286,11 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62c346d4b258c5e174f0c93a",
-	"Username": "patriciamcphee",
-	"Password": "3)MFK+HZh%K-",
-	"Email": "somethingrandom@email.com",
+	"_id": "62c1c7e756d435a51a2e8f65",
+	"Username": "bambammcgee",
+	"Password": "jFB6DGX7nhXfpxon",
+	"Email": "bbmcgee@email.com",
+    "Birthday": "1987-11-07T00:00:00.000Z",
 	"FavoriteMovies": [
 		"62c31dfbb16106ca5a07b826"
 	],
@@ -312,10 +316,11 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-	"_id": "62c346d4b258c5e174f0c93a",
-	"Username": "patriciamcphee",
-	"Password": "3)MFK+HZh%K-",
-	"Email": "somethingrandom@email.com",
+	"_id": "62c1c7e756d435a51a2e8f65",
+	"Username": "bambammcgee",
+	"Password": "jFB6DGX7nhXfpxon",
+	"Email": "bbmcgee@email.com",
+    "Birthday": "1987-11-07T00:00:00.000Z",
 	"FavoriteMovies": [],
 	"__v": 0
 }
@@ -328,7 +333,6 @@ A JSON object that holds the updated data for the user.
 					</div>
 			  </div>
 
-			<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"></script>
 
 	</body>
 </html>
