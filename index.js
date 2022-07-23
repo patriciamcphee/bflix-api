@@ -41,7 +41,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 // Connect to database using mongoose to perform CRUD
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Default message on Home page
