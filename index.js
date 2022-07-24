@@ -9,6 +9,9 @@ const express = require('express'),
 const Movies = Models.Movie;
 const Users = Models.User;
 
+// Connect to database using mongoose to perform CRUD
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const app = express();
 
 //Middleware
@@ -17,10 +20,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 
-/*
-app.use(cors());
-*/
 
+app.use(cors());
+
+/*
 let allowedOrigins = ['http://localhost:8080', 'https://secret-citadel-99176.herokuapp.com/'];
 
 app.use(cors({
@@ -33,22 +36,20 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+*/
+
+const { check, validationResult } = require('express-validator');
 
 let auth = require('./auth')(app);
 
 const passport = require('passport');
 require('./passport');
 
-const { check, validationResult } = require('express-validator');
-
 //log basic data
 app.use(morgan('common'));
 
 //serve static files
 app.use(express.static('public'));
-
-// Connect to database using mongoose to perform CRUD
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Default message on Home page
