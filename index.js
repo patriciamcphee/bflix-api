@@ -26,13 +26,12 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB', {
   true, family: 4 
 });
 */
-/*
+
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
-  useUnifiedTopology: true, 
-  family: 4 
+  useUnifiedTopology: true
 });
-*/
+/*
 mongoose.connect('mongodb+srv://myFlixAdmin:JV4SXOrNbVoncHwo@myflixdb.4xz7p.mongodb.net/?retryWrites=true&w=majority',
   {
       useNewUrlParser: true,
@@ -41,7 +40,7 @@ mongoose.connect('mongodb+srv://myFlixAdmin:JV4SXOrNbVoncHwo@myflixdb.4xz7p.mong
   .then(() => console.log('MongoDB Connected...'))
   .catch((error) => console.log(error)
   );
-
+*/
 
 //log basic data
 app.use(morgan('common'));
@@ -52,7 +51,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-app.use(cors());
+//app.use(cors());
+
+let allowedOrigins = ['http://localhost:8080', 'https://quiet-wildwood-04444.herokuapp.com/'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
