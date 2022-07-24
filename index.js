@@ -1,63 +1,62 @@
-//const dotdev = require('dotenv');
+
 //dotenv.config()
 const express = require('express'),
+  dotenv = require('dotenv'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
+dotenv.config({ path: '.env' });
+
+const { check, validationResult } = require('express-validator');
+
+//Mongoose models
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const app = express();
+
 // Connect to database using mongoose to perform CRUD
-//mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
+
+/*
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: 
+  true, family: 4 
+});
+*/
+/*
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true, 
-//  family: 4 
+  family: 4 
 });
+*/
+mongoose.connect('mongodb+srv://myFlixAdmin:JV4SXOrNbVoncHwo@myflixdb.4xz7p.mongodb.net/?retryWrites=true&w=majority',
+  {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB Connected...'))
+  .catch((error) => console.log(error)
+  );
 
 
-
-const app = express();
-
+//log basic data
+app.use(morgan('common'));
+//serve static files
+app.use(express.static('public'));
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-
-/*
 app.use(cors());
-*/
-
-
-let allowedOrigins = ['http://localhost:8080', 'https://secret-citadel-99176.herokuapp.com/'];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-}));
-
-
-const { check, validationResult } = require('express-validator');
 
 let auth = require('./auth')(app);
-
 const passport = require('passport');
 require('./passport');
-
-//log basic data
-app.use(morgan('common'));
-
-//serve static files
-app.use(express.static('public'));
 
 
 // Default message on Home page
