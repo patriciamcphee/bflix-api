@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
 //app.use(cors());
 
-let allowedOrigins = ['http://localhost:8080', 'https://quiet-wildwood-04444.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'https://powerful-coast-01325.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
