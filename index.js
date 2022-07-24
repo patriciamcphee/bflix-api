@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
 //app.use(cors());
 
-let allowedOrigins = ['http://localhost:8080', 'https://powerful-coast-01325.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'https://enigmatic-tor-67863.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -308,7 +308,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen for requests
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('Thank you for listening to P.O.R.T. ' + port);
 });
