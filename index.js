@@ -1,11 +1,11 @@
 const express = require('express'),
-  dotenv = require('dotenv'),
+
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-dotenv.config({ path: '.env' });
+
 
 const { check, validationResult } = require('express-validator');
 
