@@ -1,4 +1,4 @@
-const jwtSecret = 'your_jwt_secret'; // This has to be the same key used in the JWTStrategy
+const jwtSecret = 'gQMTKHxbNQHCX63m'; // This has to be the same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
   passport = require('passport');
@@ -21,7 +21,7 @@ module.exports = (router) => {
     passport.authenticate('local', { session: false }, (error, user, info) => {
       if (error || !user) {
         return res.status(400).json({
-          message: 'Something\'s not right',
+          message: 'Something is not right!',
           user: user
         });
       }

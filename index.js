@@ -35,9 +35,12 @@ mongoose.connect( process.env.CONNECTION_URI, {
 app.use(morgan('common'));
 //serve static files
 app.use(express.static('public'));
+app.use(express.json());
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 const cors = require('cors');
 /*
