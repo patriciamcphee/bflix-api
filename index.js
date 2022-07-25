@@ -1,9 +1,10 @@
 const express = require('express'),
   morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
-  Models = require('./models.js');
+  bodyParser = require('body-parser');
 
+//integrate mongoose 
+const mongoose = require('mongoose'),
+  Models = require('./models.js');
 
 //Mongoose models
 const Movies = Models.Movie;
@@ -27,15 +28,16 @@ mongoose.connect( process.env.CONNECTION_URI, {
 
 const app = express();
 
-
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+//cors - restrict access to API
 const cors = require('cors');
 
+//allow requests from all origins
 app.use(cors());
+
 /*
 let allowedOrigins = ['http://localhost:8080'];
 
@@ -51,14 +53,17 @@ app.use(cors({
 }));
 */
 
+//validation
 const { check, validationResult } = require('express-validator');
 
+//authentication - must be places after middleware
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
 //log basic data
 app.use(morgan('common'));
+
 //serve static files
 app.use(express.static('public'));
 
@@ -67,20 +72,11 @@ app.get('/', (req, res) => {
   res.send('<h2>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h2>');
 });
 
-//send to documentation
-app.get('/documentation', (req, res) => {                  
-  res.sendFile('public/documentation.html', { root: __dirname });
-});
-
-app.get('/secreturl', (req, res) => {
-  res.send('This is a super secret url with top-secret content.');
-});
-
-
 // -------- Movies --------
 
 // GET the list of data about ALL movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+//app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -96,7 +92,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 app.get('/movies/:Title', passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((title) => {
-      res.json(title);
+      res.status(201).json(title);
     })
     .catch((err) => {
       console.error(err);
@@ -108,7 +104,7 @@ app.get('/movies/:Title', passport.authenticate("jwt", { session: false }), (req
 app.get('/movies/director/:Name', passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.Name })
     .then((movie) => {
-      res.json(movie.Director);
+      res.status(201).json(movie.Director);
     })
     .catch((err) => {
       console.error(err);
@@ -219,28 +215,47 @@ app.post('/users',
   (required)
   Birthday: Date
 }*/
-app.put('/users/:Username', passport.authenticate("jwt", { session: false }), (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
-    {
-      Username: req.body.Username,
-      Password: req.body.Password,
-      Email: req.body.Email,
-      Birthday: req.body.Birthday
-    }
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if(err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-});
+app.put(
+  '/users/:Username',
+  [
+    check('Username', 'Username is required').isLength({ min: 4 }),
+    check(
+      'Username',
+      'Username contains non alphanumeric characters - not allowed.'
+    ).isAlphanumeric(),
+    check('Password', 'Password is required').isLength({ min: 6 }),
+    check('Email', 'Email does not appear to be valid').isEmail(),
+  ],
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    let hashedPassword = Users.hashPassword(req.body.Password);
 
-// Add a single movie to user's favorites list
-app.put('/users/:Username/movies/:MovieID', passport.authenticate("jwt", { session: false }), (req, res) => {
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $set: {
+          Username: req.body.Username,
+          Password: hashedPassword,
+          Email: req.body.Email,
+          Birthdate: req.body.Birthdate,
+        },
+      },
+      { new: true }, //This line make suer that the updated document is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
+
+// Add a movie to user's favorites list
+app.post('/users/:Username/movies/:MovieID', passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
    },
@@ -288,8 +303,14 @@ app.delete('/users/:Username', passport.authenticate("jwt", { session: false }),
     });
 });
 
+//send to documentation
+app.get('/documentation', (req, res) => {                  
+  res.sendFile('public/documentation.html', { root: __dirname });
+});
 
-
+app.get('/secreturl', (req, res) => {
+  res.send('This is a super secret url with top-secret content.');
+});
 
 // error handling
 app.use((err, req, res, next) => {
