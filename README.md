@@ -1,7 +1,6 @@
-![Movie Camera](public/Group.png)
+![Movie Camera](public/movie-camera.png)
 
 # My B-Movie Flix API
-
 This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
 
 **In this article**
@@ -10,7 +9,7 @@ This API lets users access information about different B-movies, such as directo
 
 - [Get data about a single movie by title](#get-data-about-a-single-movie-by-title)
 
-- [Get data about a genre by title](#get-data-about-a-genre-by-title)
+- [Get data about a genre by name](#get-data-about-a-genre-by-name)
 
 - [Get data about a director by name](#get-data-about-a-director-by-name)
 
@@ -85,7 +84,7 @@ A JSON object holding data about a single movie containing the description, genr
 }
 ```
 
-## Get data about a genre by title
+## Get data about a genre by name
 
 
 | Endpoint | HTTP Method | Request | Response |
@@ -153,8 +152,7 @@ A JSON object holding the data about the new user.
 {
     "Username": "bambammcgee",
     "Password": "NUng``GQE@c]",
-    "Email": "bbmcgee@email.com",
-    "Birthday": "1987-07-11"
+    "Email": "bbmcgee@email.com"
 }
 ```
 
@@ -166,12 +164,11 @@ A JSON object holding the new user's data with a system-generated ID.
 
 ```json
 {
-    "_id": "62c1c7e756d435a51a2e8f65",
     "Username": "bambammcgee",
     "Password": "NUng``GQE@c]",
     "Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
     "FavoriteMovies": [],
+    "_id": "62c0764a5efee8cbbeadeee3",
     "__v": 0
 }
 ```
@@ -191,7 +188,7 @@ A JSON object that holds the updated information about the user.
 
 ```json
 {
-    "Username": "bambammcgee",
+    "Username": "patriciamcphee",
     "Password": "jFB6DGX7nhXfpxon"
 }
 ```
@@ -202,13 +199,14 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-    "_id": "62c1c7e756d435a51a2e8f65",
-    "Username": "bambammcgee",
+    "_id": "62af73cd90779f9b519bda60",
+    "Username": "patriciamcphee",
     "Password": "jFB6DGX7nhXfpxon",
-    "Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
-    "FavoriteMovies": [    ],
-    "__v": 0
+     "Email": "somethingrandom@email.com",
+      "FavoriteMovies": [
+          "62c319b0b16106ca5a07b823"
+      ],
+      "__v": 0
 }
 ```
 
@@ -230,7 +228,7 @@ None
 A text confirmation message indicating the user has been removed from the movie app. 
 
 ```
-We're sorry to see you go. As you requested, bambammcgee has been removed from the movie app.
+bambammcgee has been removed from the movie app.
 ```
 
 
@@ -254,11 +252,10 @@ A JSON object that holds the updated data for the user.
 
 ```json
 {
-    "_id": "62c1c7e756d435a51a2e8f65",
-    "Username": "bambammcgee",
-    "Password": "jFB6DGX7nhXfpxon",
-    "Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
+    "_id": "62c346d4b258c5e174f0c93a",
+    "Username": "patriciamcphee",
+    "Password": "3)MFK+HZh%K-",
+    "Email": "somethingrandom@email.com",
     "FavoriteMovies": [
         "62c31dfbb16106ca5a07b826"
     ],
@@ -280,15 +277,14 @@ None
 
 ### Response
 A JSON object that holds the updated data for the user.
-    
+ 
 
 ```json
 {
-    "_id": "62c1c7e756d435a51a2e8f65",
-    "Username": "bambammcgee",
-    "Password": "jFB6DGX7nhXfpxon",
-    "Email": "bbmcgee@email.com",
-    "Birthday": "1987-11-07T00:00:00.000Z",
+    "_id": "62c346d4b258c5e174f0c93a",
+    "Username": "patriciamcphee",
+    "Password": "3)MFK+HZh%K-",
+    "Email": "somethingrandom@email.com",
     "FavoriteMovies": [],
     "__v": 0
 }

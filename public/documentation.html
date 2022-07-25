@@ -6,41 +6,55 @@
 		<meta name = "viewport" content="width = device-width, initial-scale = 1.0"/>
 		<title>My Movie Flix API</title>
 		<!-- Stylesheets-->
-
+		<link href="../dist/output.css" rel="stylesheet">
 	    <script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 		<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 		</head>
 		<body>
 
-			<div class="container mx-auto px-2 mt-10">
+<div class="container px-10 mx-auto mt-10">
 
-					<img src="Group.png" />
+<div class="md:flex">
 
-					<zero-md>
-						<script type="text/markdown">
-# My B-Movie Flix API
-This API lets users access information about different B-movies, such as directors and actors. It also lets them sign up so they can create a list of their favorite B-movies.
 
-**In this article**
+
+	<div class="mt-4 md:mt-0 md:ml-6">
+		<article class="prose prose-img:rounded-xl prose-p:text-gray-600 prose-a:text-blue-600">
+			<h1>My B-Movie Flix API</h1>
+			<p>
+				This API lets users access information about different B-movies, such as directors, actors, genre, and year of release. It also lets them sign up so they can create a list of their favorite B-movies. They can can remove movies from their favorites and even unregister from the movie app if they'd like.
+			  </p>
+		  </article>
+		  <div class="px-6 mt-6 shadow-xl">
+			<zero-md>
+				<script type="text/markdown">
+
+**Table of contents**
 
 - [Get a list of all movies](#get-a-list-of-all-movies)
-
 - [Get data about a single movie by title](#get-data-about-a-single-movie-by-title)
-
-- [Get data about a genre by title](#get-data-about-a-genre-by-title)
-
+- [Get data about a genre by name](#get-data-about-a-genre-by-name)
 - [Get data about a director by name](#get-data-about-a-director-by-name)
-
 - [User registration](#user-registration)
-
 - [Update user info](#update-user-info)
-
 - [Unregister user (delete user)](#unregister-user-delete-user)
-
 - [Add a movie to a user's "favorites" list](#add-a-movie-to-a-users-favorites-list)
+- [Remove a movie from the user's "favorites" list](#remove-a-movie-from-the-users-favorites-list)<br/><br/>
 
-- [Remove a movie from the user's "favorites" list](#remove-a-movie-from-the-users-favorites-list) 
 
+				</script>
+			</zero-md>
+
+		  </div>		
+	</div>
+  </div>
+  
+
+
+  <div class="mb-6 mt-14">
+					<zero-md>
+						<script type="text/markdown">
 
 ## Get a list of all movies
 
@@ -103,7 +117,7 @@ A JSON object holding data about a single movie containing the description, genr
 }
 ```
 
-## Get data about a genre by title
+## Get data about a genre by name
 
 
 | Endpoint | HTTP Method | Request | Response |
@@ -316,7 +330,7 @@ A JSON object that holds the updated data for the user.
 							  </script>
 	
 						</zero-md>
-
+					</div>
 			  </div>
 
 
