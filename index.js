@@ -4,14 +4,11 @@ const express = require('express'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-const cors = require('cors');
-
 
 //Mongoose models
 const Movies = Models.Movie;
 const Users = Models.User;
 
-const app = express();
 
 // Connect to database using mongoose to perform CRUD
 
@@ -28,19 +25,15 @@ mongoose.connect( process.env.CONNECTION_URI, {
   useUnifiedTopology: true
 });
 
+const app = express();
 
-//log basic data
-app.use(morgan('common'));
-//serve static files
-app.use(express.static('public'));
-app.use(express.json());
+
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const { check, validationResult } = require('express-validator');
 
-
+const cors = require('cors');
 
 app.use(cors());
 /*
@@ -57,10 +50,17 @@ app.use(cors({
   }
 }));
 */
+
+const { check, validationResult } = require('express-validator');
+
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
+//log basic data
+app.use(morgan('common'));
+//serve static files
+app.use(express.static('public'));
 
 // Default message on Home page
 app.get('/', (req, res) => {
