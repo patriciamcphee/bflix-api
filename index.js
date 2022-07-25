@@ -1,27 +1,44 @@
 const express = require('express'),
   morgan = require('morgan'),
-  path = require('path'),
-  bodyParser = require('body-parser'),
-  uuid = require('uuid');
+  bodyParser = require('body-parser');
 
-const passport = require('passport');
-require('./passport');
 //integrate mongoose 
 const mongoose = require('mongoose'),
   Models = require('./models.js');
 
-const app = express();
+//Mongoose models
+const Movies = Models.Movie;
+const Users = Models.User;
 
+
+// Connect to database using mongoose to perform CRUD
+
+/*
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: 
+  true, family: 4 
+});
+*/
+
+mongoose.connect( process.env.CONNECTION_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
+
+const app = express();
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//define cors - restrict access to API
-const cors = require('cors');
+//authentication - must be places after middleware
+let auth = require('./auth.js')(app);
+const passport = require('passport');
+  require('./passport.js');
 
-//validation
-const { check, validationResult } = require('express-validator');
+//cors - restrict access to API
+const cors = require('cors');
 
 //allow requests from all origins
 app.use(cors());
@@ -41,40 +58,11 @@ app.use(cors({
 }));
 */
 
-
-//authentication - must be places after middleware
-let auth = require('./auth.js')(app);
-const passport = require('passport');
-require('./passport.js');
+//validation
+const { check, validationResult } = require('express-validator');
 
 //log basic data
 app.use(morgan('common'));
-
-//Mongoose models
-const Movies = Models.Movie;
-const Users = Models.User;
-
-// Connect to database using mongoose to perform CRUD
-
-/*
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: 
-  true, family: 4 
-});
-*/
-
-mongoose.connect( process.env.CONNECTION_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
-
-
-
-
-
-
-
 
 //serve static files
 app.use(express.static('public'));
