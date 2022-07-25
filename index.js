@@ -1,8 +1,4 @@
-
-
-
 const express = require('express'),
-//dotenv.config()
   dotenv = require('dotenv'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
@@ -13,14 +9,36 @@ dotenv.config({ path: '.env' });
 
 const { check, validationResult } = require('express-validator');
 
+//Mongoose models
+const Movies = Models.Movie;
+const Users = Models.User;
+
+const app = express();
+
+// Connect to database using mongoose to perform CRUD
+
+/*
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: 
+  true, family: 4 
+});
+*/
+
+mongoose.connect( process.env.CONNECTION_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
+
+
 //log basic data
 app.use(morgan('common'));
-
+//serve static files
+app.use(express.static('public'));
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//define cors
 const cors = require('cors');
 /*
 app.use(cors());
@@ -41,39 +59,6 @@ app.use(cors({
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
-
-//Mongoose models
-const Movies = Models.Movie;
-const Users = Models.User;
-
-// Connect to database using mongoose to perform CRUD
-
-/*
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: 
-  true, family: 4 
-});
-*/
-
-mongoose.connect( process.env.CONNECTION_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
-
-const app = express();
-
-
-
-
-
-//serve static files
-app.use(express.static('public'));
-
-
-
-
-
 
 
 // Default message on Home page
