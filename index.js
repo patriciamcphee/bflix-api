@@ -33,9 +33,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //authentication - must be places after middleware
-let auth = require('./auth')(app);
+let auth = require('./auth.js')(app);
 const passport = require('passport');
-require('./passport');
+require('./passport.js');
+
+//validation
+const { check, validationResult } = require('express-validator');
+
 
 //cors - restrict access to API
 const cors = require('cors');
@@ -58,8 +62,6 @@ app.use(cors({
 }));
 */
 
-//validation
-const { check, validationResult } = require('express-validator');
 
 //log basic data
 app.use(morgan('common'));
