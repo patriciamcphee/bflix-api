@@ -59,7 +59,7 @@ app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      let message = 'The CORS policy for this application doesn\’t allow access from origin ' + origin;
       return callback(new Error(message ), false);
     }
     return callback(null, true);
@@ -73,7 +73,7 @@ require('./passport');
 
 // Default message on Home page
 app.get('/', (req, res) => {
-  res.send('<h1>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h1>');
+  res.send('<h2>Last night a movie theater was robbed of $1000. The thieves took one large bag of popcorn, a combo meal, and a box of milk duds!</h2>');
 });
 
 //send to documentation
