@@ -1,15 +1,13 @@
 
 //dotenv.config()
 const express = require('express'),
-  dotenv = require('dotenv'),
+//  dotenv = require('dotenv'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
-dotenv.config({ path: '.env' });
-
-const { check, validationResult } = require('express-validator');
+//dotenv.config({ path: '.env' });
 
 //Mongoose models
 const Movies = Models.Movie;
@@ -19,19 +17,19 @@ const app = express();
 
 // Connect to database using mongoose to perform CRUD
 
-/*
+
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
   useNewUrlParser: true, 
   useUnifiedTopology: 
   true, family: 4 
 });
-*/
 
+/*
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-
+*/
 
 //log basic data
 app.use(morgan('common'));
@@ -42,9 +40,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-/*
+
 app.use(cors());
-*/
+/*
 let allowedOrigins = ['http://localhost:8080'];
 
 app.use(cors({
@@ -57,7 +55,11 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+*/
+//validation
+const { check, validationResult } = require('express-validator');
 
+//authentication
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
