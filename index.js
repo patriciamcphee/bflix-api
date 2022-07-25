@@ -44,7 +44,6 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*
 const cors = require('cors');
 /*
 app.use(cors());
