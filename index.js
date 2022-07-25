@@ -15,19 +15,19 @@ const app = express();
 
 // Connect to database using mongoose to perform CRUD
 
-
+/*
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
   useNewUrlParser: true, 
   useUnifiedTopology: 
   true, family: 4 
 });
+*/
 
-/*
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-*/
+
 
 //log basic data
 app.use(morgan('common'));
