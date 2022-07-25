@@ -1,6 +1,8 @@
 
-//dotenv.config()
+
+
 const express = require('express'),
+//dotenv.config()
   dotenv = require('dotenv'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
@@ -11,11 +13,6 @@ dotenv.config({ path: '.env' });
 
 const { check, validationResult } = require('express-validator');
 
-//Mongoose models
-const Movies = Models.Movie;
-const Users = Models.User;
-
-const app = express();
 
 // Connect to database using mongoose to perform CRUD
 
@@ -31,16 +28,13 @@ mongoose.connect( process.env.CONNECTION_URI, {
   useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-/*
-mongoose.connect('mongodb+srv://myFlixAdmin:JV4SXOrNbVoncHwo@myflixdb.4xz7p.mongodb.net/?retryWrites=true&w=majority',
-  {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-  })
-  .then(() => console.log('MongoDB Connected...'))
-  .catch((error) => console.log(error)
-  );
-*/
+
+const app = express();
+
+//Mongoose models
+const Movies = Models.Movie;
+const Users = Models.User;
+
 
 //log basic data
 app.use(morgan('common'));
@@ -50,6 +44,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
 const cors = require('cors');
 /*
 app.use(cors());
