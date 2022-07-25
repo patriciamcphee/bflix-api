@@ -33,9 +33,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //authentication - must be places after middleware
-let auth = require('./auth.js')(app);
+let auth = require('./auth')(app);
 const passport = require('passport');
-  require('./passport.js');
+  require('./passport');
 
 //cors - restrict access to API
 const cors = require('cors');
