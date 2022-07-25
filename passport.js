@@ -8,28 +8,31 @@ let Users = Models.User,
   ExtractJWT = passportJWT.ExtractJwt;
 
   //user login endpoint
-passport.use(new LocalStrategy({
-  usernameField: 'Username',
-  passwordField: 'Password'
-}, (username, password, callback) => {
-  console.log(username + '  ' + password);
-  Users.findOne({ Username: username }, (error, user) => {
-    if (error) {
-      console.log(error);
-      return callback(error);
-    }
-    if (!user) {
-      console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
-      return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
-    }
-    if (!user.validatePassword(password)) {
-      console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
-      return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
-    }
-    console.log('Hot dog! It\'s finished.');
-    return callback(null, user);
-  });
-}));
+  passport.use(new LocalStrategy({
+    usernameField: 'Username',
+    passwordField: 'Password'
+  }, (username, password, callback) => {
+    console.log(username + '  ' + password);
+    Users.findOne({ Username: username }, (error, user) => {
+      if (error) {
+        console.log(error);
+        return callback(error);
+      }
+  
+      if (!user) {
+        console.log('incorrect username');
+        return callback(null, false, {message: 'Incorrect username.'});
+      }
+  
+      if (!user.validatePassword(password)) {
+        console.log('incorrect password');
+        return callback(null, false, {message: 'Incorrect password.'});
+      }
+  
+      console.log('finished');
+      return callback(null, user);
+    });
+  }));
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
