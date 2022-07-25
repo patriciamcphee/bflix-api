@@ -1,13 +1,11 @@
 const express = require('express'),
-
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
+const cors = require('cors');
 
-
-const { check, validationResult } = require('express-validator');
 
 //Mongoose models
 const Movies = Models.Movie;
@@ -17,19 +15,19 @@ const app = express();
 
 // Connect to database using mongoose to perform CRUD
 
-/*
+
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
   useNewUrlParser: true, 
   useUnifiedTopology: 
   true, family: 4 
 });
-*/
 
+/*
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-
+*/
 
 //log basic data
 app.use(morgan('common'));
@@ -40,12 +38,12 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const { check, validationResult } = require('express-validator');
 
 
-const cors = require('cors');
-/*
+
 app.use(cors());
-*/
+/*
 let allowedOrigins = ['http://localhost:8080'];
 
 app.use(cors({
@@ -58,7 +56,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-
+*/
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
@@ -133,15 +131,15 @@ app.get('/movies/genre/:Name', passport.authenticate("jwt", { session: false }),
 // -------- Users --------
 
 // GET the list of ALL users
-app.get('/users', passport.authenticate("jwt", { session: false }), (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
-    .then((users) => {
-      res.status(200).json(users);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
+      .then((users) => {
+          res.status(200).json(users);
+      })
+      .catch((error) => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+      });
 });
 
 // GET user by username
@@ -177,7 +175,6 @@ app.post('/users',
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
-
   // check the validation object for errors
     let errors = validationResult(req);
 
