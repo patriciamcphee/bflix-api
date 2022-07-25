@@ -51,8 +51,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-//app.use(cors());
-
+app.use(cors());
+/*
 let allowedOrigins = ['http://localhost:8080', 'https://193.19.109.205/'];
 
 app.use(cors({
@@ -65,7 +65,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-
+*/
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
