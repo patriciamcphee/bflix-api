@@ -1,68 +1,40 @@
-
-//dotenv.config()
 const express = require('express'),
-//  dotenv = require('dotenv'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
-
-//dotenv.config({ path: '.env' });
 
 //Mongoose models
 const Movies = Models.Movie;
 const Users = Models.User;
 
 const app = express();
+const cors = require('cors');
+app.use(cors());
+
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+const { check, validationResult } = require('express-validator');
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
+//log basic data
+app.use(morgan('common'));
+
+//serve static files
+app.use(express.static('public'));
 
 // Connect to database using mongoose to perform CRUD
 
+//mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: 
-  true, family: 4 
-});
-
-/*
 mongoose.connect( process.env.CONNECTION_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-*/
-
-//log basic data
-app.use(morgan('common'));
-//serve static files
-app.use(express.static('public'));
-//Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-const cors = require('cors');
-
-app.use(cors());
-/*
-let allowedOrigins = ['http://localhost:8080'];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn\’t allow access from origin ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-}));
-*/
-//validation
-const { check, validationResult } = require('express-validator');
-
-//authentication
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
 
 
 // Default message on Home page
@@ -187,30 +159,31 @@ app.post('/users',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-  Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists
-    .then((user) => {
-      if (user) { //If the user is found, send a response stating that it already exists
-        return res.status(400).send('It looks like ' + req.body.Username + ' already exists. Try a different username and try again.');
-      } else {
-        Users
-          .create({
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
-          })
-          .then((user) =>{res.status(201).json(user) })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send('Error: ' + error);
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-});
+    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' already exists');
+        } else {
+          Users
+            .create({
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday
+            })
+            .then((user) => { res.status(201).json(user) })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+  });
 
 // Update user info
 /* We’ll expect JSON in this format
@@ -304,5 +277,5 @@ app.use((err, req, res, next) => {
 // listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
-  console.log('Thank you for listening to P.O.R.T. ' + port);
+  console.log('Thank you for listening to P.O.R.T. 8080!');
 });
