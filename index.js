@@ -9,18 +9,18 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const app = express();
-const cors = require('cors');
-app.use(cors());
+
+
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const { check, validationResult } = require('express-validator');
+
 
 //authentication - must be places after middleware
-let auth = require('./auth.js')(app);
+let auth = require('./auth')(app);
 const passport = require('passport');
-  require('./passport.js');
+  require('./passport');
 
 //cors - restrict access to API
 const cors = require('cors');
@@ -54,12 +54,9 @@ app.use(express.static('public'));
 
 // Connect to database using mongoose to perform CRUD
 
-//mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
 
-mongoose.connect( process.env.CONNECTION_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
+//mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Default message on Home page
