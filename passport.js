@@ -7,7 +7,7 @@ let Users = Models.User,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
 
-  //user login endpoint
+//user login endpoint
 passport.use(new LocalStrategy({
   usernameField: 'Username',
   passwordField: 'Password'
@@ -18,15 +18,18 @@ passport.use(new LocalStrategy({
       console.log(error);
       return callback(error);
     }
+
     if (!user) {
-      console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
-      return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
+      console.log('incorrect username');
+      return callback(null, false, {message: 'Incorrect username.'});
     }
+
     if (!user.validatePassword(password)) {
-      console.log('Whoa Whoa Whoa! That\'s the incorrect username.');
-      return callback(null, false, {message: 'DENIED! You\'ve entered an incorrect username or password.'});
+      console.log('incorrect password');
+      return callback(null, false, {message: 'Incorrect password.'});
     }
-    console.log('Hot dog! It\'s finished.');
+
+    console.log('finished');
     return callback(null, user);
   });
 }));
