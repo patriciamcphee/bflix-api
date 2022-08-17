@@ -1,0 +1,160 @@
+[{
+  "_id": {
+    "$oid": "62dc1aa3e2c58b1abb2025d5"
+  },
+  "Username": "standinginwater",
+  "Password": "eT3M4IqNai4NswU7",
+  "Email": "standing@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62dc1512f755e13ece39a661"
+  },
+  "Username": "kendalup2",
+  "Password": "0EtDWM8NM4nWzYaS",
+  "Email": "kendalup2@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "534643200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62dc13b98272b802637de162"
+  },
+  "Username": "patriciamcphee",
+  "Password": "hello123",
+  "FavoriteMovies": [
+    {
+      "$oid": "62c31f3ab16106ca5a07b82d"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "62dc14ab8272b802637de163"
+  },
+  "Username": "landstander",
+  "Password": "tw3lveCX63m",
+  "Email": "landstander@someemaildomain.com",
+  "Birthday": "1987-07-11"
+},{
+  "_id": {
+    "$oid": "62dc1504f755e13ece39a65d"
+  },
+  "Username": "desserrr",
+  "Password": "gQMTKHxbNQHCX63m",
+  "Email": "despats@yahoo.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "704332800000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62dc1523f755e13ece39a665"
+  },
+  "Username": "punkrockgirl",
+  "Password": "eT3M4IqNai4NswU7",
+  "Email": "punkrocker@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62df14389a1a46ccdafe63e9"
+  },
+  "Username": "bambammcgee",
+  "Password": "twelveEleven",
+  "Email": "bambammcgee@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62df1540ea97d9ef10cfb79f"
+  },
+  "Username": "richardcheese",
+  "Password": "twelveEleven",
+  "Email": "richardcheese@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62df18865d13b33dede31c07"
+  },
+  "Username": "whatwhat",
+  "Password": "twelveEleven",
+  "Email": "happycamper@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62df1a2e5d13b33dede31c0d"
+  },
+  "Username": "starlight",
+  "Password": "twelveEleven",
+  "Email": "happycamper@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e0006c77a779974dced4a6"
+  },
+  "Username": "hellokitty",
+  "Password": "twelveEleven",
+  "Email": "happycamper@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e000a877a779974dced4aa"
+  },
+  "Username": "snowman",
+  "Password": "twelveEleven",
+  "Email": "happycamper@email.com",
+  "Birthday": {
+    "$date": {
+      "$numberLong": "447811200000"
+    }
+  },
+  "FavoriteMovies": [],
+  "__v": 0
+}]
