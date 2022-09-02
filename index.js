@@ -9,18 +9,18 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const app = express();
-const cors = require('cors');
-app.use(cors());
+
+
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const { check, validationResult } = require('express-validator');
+
 
 //authentication - must be places after middleware
-let auth = require('./auth.js')(app);
+let auth = require('./auth')(app);
 const passport = require('passport');
-  require('./passport.js');
+  require('./passport');
 
 //cors - restrict access to API
 const cors = require('cors');
@@ -56,10 +56,7 @@ app.use(express.static('public'));
 
 //mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true, family: 4 });
 
-mongoose.connect( process.env.CONNECTION_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Default message on Home page
@@ -80,14 +77,14 @@ app.get('/secreturl', (req, res) => {
 // -------- Movies --------
 
 // GET the list of data about ALL movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/movies", function (req, res) {
   Movies.find()
-    .then((movies) => {
+    .then(function (movies) {
       res.status(201).json(movies);
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.error(error);
-      res.status(500).send('Error: ' + error);
+      res.status(500).send("Error: " + error);
     });
 });
 
@@ -177,38 +174,38 @@ app.post('/users',
   ], (req, res) => {
 
   // check the validation object for errors
-    let errors = validationResult(req);
+  let errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
 
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-      .then((user) => {
-        if (user) {
-          //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Username + ' already exists');
-        } else {
-          Users
-            .create({
-              Username: req.body.Username,
-              Password: hashedPassword,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday
-            })
-            .then((user) => { res.status(201).json(user) })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).send('Error: ' + error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  });
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    .then((user) => {
+      if (user) {
+        //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.Username + ' already exists');
+      } else {
+        Users
+          .create({
+            Username: req.body.Username,
+            Password: hashedPassword,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday
+          })
+          .then((user) => { res.status(201).json(user) })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
 
 // Update user info
 /* We’ll expect JSON in this format
@@ -302,5 +299,5 @@ app.use((err, req, res, next) => {
 // listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
-  console.log('Thank you for listening to P.O.R.T. 8080!');
+  console.log('Thank you for listening to P.O.R.T. ' + port + '!');
 });
