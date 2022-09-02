@@ -26,10 +26,10 @@ const passport = require('passport');
 const cors = require('cors');
 
 //allow requests from all origins
-app.use(cors());
+//app.use(cors());
 
-/*
-let allowedOrigins = ['http://localhost:8080'];
+
+let allowedOrigins = ['http://localhost:1234'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -41,7 +41,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
+/**/
 
 //validation
 const { check, validationResult } = require('express-validator');
@@ -77,6 +77,17 @@ app.get('/secreturl', (req, res) => {
 // -------- Movies --------
 
 // GET the list of data about ALL movies
+/*app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});*/
+
 app.get("/movies", function (req, res) {
   Movies.find()
     .then(function (movies) {
