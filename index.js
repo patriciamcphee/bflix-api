@@ -26,9 +26,9 @@ const passport = require('passport');
 const cors = require('cors');
 
 //allow requests from all origins
-app.use(cors());
+//app.use(cors());
 
-/*
+
 let allowedOrigins = ['http://localhost:1234'];
 
 app.use(cors({
@@ -41,7 +41,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
+/**/
 
 //validation
 const { check, validationResult } = require('express-validator');
