@@ -26,9 +26,9 @@ const passport = require('passport');
 const cors = require('cors');
 
 //allow requests from all origins
-//app.use(cors());
+app.use(cors());
 
-
+/*
 let allowedOrigins = ['http://localhost:1234'];
 
 app.use(cors({
@@ -41,7 +41,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-/**/
+*/
 
 //validation
 const { check, validationResult } = require('express-validator');
@@ -77,7 +77,7 @@ app.get('/secreturl', (req, res) => {
 // -------- Movies --------
 
 // GET the list of data about ALL movies
-/*app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -86,9 +86,9 @@ app.get('/secreturl', (req, res) => {
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-});*/
+});
 
-app.get("/movies", function (req, res) {
+/*app.get("/movies", function (req, res) {
   Movies.find()
     .then(function (movies) {
       res.status(201).json(movies);
@@ -98,7 +98,7 @@ app.get("/movies", function (req, res) {
       res.status(500).send("Error: " + error);
     });
 });
-
+*/
 
 // GET the data about a single movie, by title
 app.get('/movies/:Title', passport.authenticate("jwt", { session: false }), (req, res) => {
