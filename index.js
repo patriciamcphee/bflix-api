@@ -77,6 +77,7 @@ app.get('/secreturl', (req, res) => {
 // -------- Movies --------
 
 // GET the list of data about ALL movies
+/*
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
@@ -87,8 +88,9 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
       res.status(500).send('Error: ' + error);
     });
 });
+*/
 
-/*app.get("/movies", function (req, res) {
+app.get("/movies", function (req, res) {
   Movies.find()
     .then(function (movies) {
       res.status(201).json(movies);
@@ -98,7 +100,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
       res.status(500).send("Error: " + error);
     });
 });
-*/
+
 
 // GET the data about a single movie, by title
 app.get('/movies/:Title', passport.authenticate("jwt", { session: false }), (req, res) => {
